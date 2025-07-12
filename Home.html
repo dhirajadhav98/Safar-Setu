@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safar Setu - Experience India's Wine Capital</title>
+    
+    <link rel="stylesheet" href="style.css">
+    
+
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="assets/images/safar setu logo.png" alt="Safar Setu Logo">
+                <h1>Safar Setu</h1>
+            </div>
+            <button class="mobile-nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#destinations">Tourist Spots</a></li>
+                    <li><a href="#transportation">Transport</a></li>
+                    <li><a href="#map">Map</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" style="background-image: url('assets/images/nashikbg.jpg');background-size: cover; background-position: center;">
+        <div class="hero-content">
+            <h2>Experience the Divine Beauty of Nashik</h2>
+            <p>Explore ancient temples, scenic vineyards, and breathtaking landscapes in India's wine capital</p>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search for tourist spots, activities, or accommodations...">
+                <button id="searchButton"><i class="fas fa-search"></i> Search</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Category Filter -->
+    <section class="category-filter">
+        <div class="container">
+            <div class="filter-buttons">
+                <button class="filter-button active" data-filter="all">All Places</button>
+                <button class="filter-button" data-filter="religious">Religious</button>
+                <button class="filter-button" data-filter="adventure">Adventure</button>
+                <button class="filter-button" data-filter="nature">Nature</button>
+                <button class="filter-button" data-filter="cultural">Cultural</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destinations Section -->
+    <section id="destinations" class="destinations">
+        <div class="container">
+            <h2 class="section-title">Popular Destinations</h2>
+            <div class="destinations-grid">
+                <!-- Destination 1 -->
+                <div class="destination-card" data-category="religious">
+                    <img src="assets/images/Trimbak temple.jpeg" alt="Trimbakeshwar Temple" class="destination-img">
+                    <div class="destination-info">
+                        <span class="destination-category">Religious</span>
+                        <h3 class="destination-title">Trimbakeshwar Temple</h3>
+                        <p class="destination-desc">One of the twelve Jyotirlingas in India, this ancient temple is dedicated to Lord Shiva and sits at the origin of the Godavari River.</p>
+                        <a href="trimbak.html" class="destination-link">Explore More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Destination 2 -->
+                <div class="destination-card" data-category="religious">
+                    <img src="assets/images/panchvati.png" alt="Panchavati" class="destination-img">
+                    <div class="destination-info">
+                        <span class="destination-category">Religious</span>
+                        <h3 class="destination-title">Panchavati</h3>
+                        <p class="destination-desc">A sacred place mentioned in the Ramayana where Lord Rama, Sita and Lakshmana stayed during their exile. Home to many temples and ghats.</p>
+                        <a href="panchvati.html" class="destination-link">Explore More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Destination 3 -->
+                <div class="destination-card" data-category="Religious">
+                    <img src="assets/images/sapt vani.jpg" alt="Saptsrungi Temple" class="destination-img">
+                    <div class="destination-info">
+                        <span class="destination-category">Religious</span>
+                        <h3 class="destination-title">Saptsrungi Temple</h3>
+                        <p class="destination-desc">A sacred temple dedicated to Goddess Saptashrungi, located in Vani. Believed to be where Goddess Saptashrungi Devi resides, it is an important Shakti Peeth and a revered pilgrimage site.</p>
+                        <a href="saptshrungi.html" class="destination-link">Explore More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Destination 4 -->
+                <div class="destination-card" data-category="adventure">
+                    <img src="assets/images/pandav.jpg" alt="Pandavleni Caves" class="destination-img">
+                    <div class="destination-info">
+                        <span class="destination-category">Adventure</span>
+                        <h3 class="destination-title">Pandavleni Caves</h3>
+                        <p class="destination-desc">Ancient rock-cut caves dating back to the 1st century BCE, offering a glimpse into Buddhist history and stunning views of the surroundings.</p>
+                        <a href="pandavleni.html" class="destination-link">Explore More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Destination 5 -->
+                <div class="destination-card" data-category="nature">
+                    <img src="assets/images/sula.jpg" alt="Sula Vineyards" class="destination-img">
+                    <div class="destination-info">
+                        <span class="destination-category">Nature</span>
+                        <h3 class="destination-title">Sula Vineyards</h3>
+                        <p class="destination-desc">India's premier vineyard offering wine tours, tastings, and beautiful views of surrounding landscapes. A perfect getaway for wine enthusiasts.</p>
+                        <a href="sula.html" class="destination-link">Explore More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                    
+                
+                <!-- Destination 6 -->
+                <div class="destination-card" data-category="cultural">
+                    <img src="assets/images/coin.png" alt="Coin Museum" class="destination-img">
+                    <div class="destination-info">
+                        <span class="destination-category">Cultural</span>
+                        <h3 class="destination-title">Coin Museum</h3>
+                        <p class="destination-desc">One of its kind in Asia, this museum houses a vast collection of coins from different eras, providing insights into Indian monetary history.</p>
+                        <a href="coin museum.html" class="destination-link">Explore More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+           
+
+                <!-- Destination 7 -->
+                <div class="destination-card" data-category="Religious">
+                    <img src="assets/images/kalaram temple.jpeg" alt="Kalaram Temple" class="destination-img">
+                    <div class="destination-info">
+                        <span class="destination-category">Religious</span>
+                        <h3 class="destination-title">Kalaram Temple</h3>
+                        <p class="destination-desc">Historic temple known for its black stone architecture in Panchavati area, built in 1788 by Sardar Odhekar, dedicated to Lord Rama</p>
+                        <a href="Kalaranm Temple.html" class="destination-link">Explore More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+             <!-- Destination 8 -->
+             <div class="destination-card" data-category="Religious">
+                <img src="assets/images/kapaleshwar.png" alt="Kalaram Temple" class="destination-img">
+                <div class="destination-info">
+                    <span class="destination-category">Religious</span>
+                    <h3 class="destination-title">Kapaleshwar Temple</h3>
+                    <p class="destination-desc">Ancient temple dedicated to Lord Shiva in Panchvati, unique for having no Nandi idol, built near the Godavari River.</p>
+                    <a href="Kapaleshwar Temple.html" class="destination-link">Explore More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- Destination 9 -->
+            <div class="destination-card" data-category="Religious & Adventures">
+                <img src="assets/images/anjaneri.png" alt="Anjaneri Hills" class="destination-img">
+                <div class="destination-info">
+                    <span class="destination-category">Religious & Adventures</span>
+                    <h3 class="destination-title">Anjaneri Hills</h3>
+                    <p class="destination-desc"> paragraph for individual location </p>
+                    <a href="anjaneri.html" class="destination-link">Explore More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Destination 10 -->
+            <div class="destination-card" data-category="Religious">
+                <img src="assets/images/gondeshwar.png" alt="Gondeshwar Temple" class="destination-img">
+                <div class="destination-info">
+                    <span class="destination-category">Religious</span>
+                    <h3 class="destination-title">Gondeshwar Temple</h3>
+                    <p class="destination-desc">This ancient temple, dedicated to Lord Shiva, is a stunning example of Hemadpanti architecture and is located in Sinnar, Maharashtra.</p>
+                    <a href="Gondeshwar.html" class="destination-link">Explore More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Destination 11 -->
+            <div class="destination-card" data-category="Religious">
+                <img src="/api/placeholder/400/300" alt="Renuka Devi Temple" class="destination-img">
+                <div class="destination-info">
+                    <span class="destination-category">Religious</span>
+                    <h3 class="destination-title">Renuka Devi Temple</h3>
+                    <p class="destination-desc">A sacred temple dedicated to Goddess Renuka Devi, located in Chandwad. Believed to be a significant Shakti Peeth, it is a revered pilgrimage site where devotees seek the blessings of the divine mother.</p>
+                    <a href="saibaba.html" class="destination-link">Explore More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Destination 12 -->
+            <div class="destination-card" data-category="nature">
+                <img src="/api/placeholder/400/300" alt="Someshwar Waterfall" class="destination-img">
+                <div class="destination-info">
+                    <span class="destination-category">Nature</span>
+                    <h3 class="destination-title">Someshwar Waterfall</h3>
+                    <p class="destination-desc">A picturesque waterfall located around 20 km from the city, perfect for nature lovers and those seeking tranquility away from city life.</p>
+                    <a href="someshwar.html" class="destination-link">Explore More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Destination 13 -->
+            <div class="destination-card" data-category="nature">
+                <img src="/api/placeholder/400/300" alt="Sula Vineyards" class="destination-img">
+                <div class="destination-info">
+                    <span class="destination-category">Nature</span>
+                    <h3 class="destination-title">Sula Vineyards</h3>
+                    <p class="destination-desc">India's premier vineyard offering wine tours, tastings, and beautiful views of surrounding landscapes. A perfect getaway for wine enthusiasts.</p>
+                    <a href="sula.html" class="destination-link">Explore More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+                
+            
+            <!-- Destination 14 -->
+            <div class="destination-card" data-category="Religious">
+                <img src="/api/placeholder/400/300" alt="Kalaram Temple" class="destination-img">
+                <div class="destination-info">
+                    <span class="destination-category">Religious</span>
+                    <h3 class="destination-title">Kapaleshwar Temple</h3>
+                    <p class="destination-desc">paragraph for indivual location</p>
+                    <a href="Kapaleshwar Temple.html" class="destination-link">Explore More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+    
+           
+    </section>
+    <section id="around-nashik" class="destinations">
+        <div class="container">
+            <h2 class="section-title">Around the Nashik District</h2>
+            <div class="destinations-grid">
+
+                <div class="destination-card" data-category="cultural">
+                    <img src="assets/images/sai.png" alt="Sai Baba Temple" class="destination-img">
+                    <div class="destination-info">
+                        <span class="destination-category">Cultural</span>
+                        <h3 class="destination-title">Sai Baba Temple</h3>
+                        <p class="destination-desc">A sacred temple dedicated to Sai Baba, located in Shirdi. Believed to be the abode of the revered saint, it is a major pilgrimage site attracting devotees seeking blessings, peace, and spiritual guidance.</p>
+                        <a href="saibaba.html" class="destination-link">Explore More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Destination 2 -->
+                <div class="destination-card" data-category="Religious">
+                    <img src="assets/images/gangapur-dam.jpg" alt="Gangapur Dam" class="destination-img">
+                    <div class="destination-info">
+                        <span class="destination-category">Religious</span>
+                        <h3 class="destination-title">Ghrishneshwar Jyotirlinga</h3>
+                        <p class="destination-desc">A sacred temple dedicated to Lord Shiva, located in Ellora. Believed to be one of the twelve Jyotirlingas, Ghrishneshwar Temple is a revered pilgrimage site and an important center of Shaivism.</p>
+                        <a href="ghrishneshwar.html" class="destination-link">Explore More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+<!--Transportatio section -->
+    <section id="transportation" class="transportation">
+        <div class="container">
+            <h2 class="section-title">Transportation</h2>
+            
+            <!-- How to Reach Nashik -->
+            <h3 class="subsection-title">How to Reach Nashik</h3>
+            <div class="transport-options">
+                <!-- By Road -->
+                <div class="transport-card">
+                    <div class="transport-icon">
+                        <i class="fas fa-road"></i>
+                    </div>
+                    <h3>By Road</h3>
+                    <p>Nashik has excellent road connectivity with major cities. It is easily accessible from Mumbai, Pune, Ahmedabad, Hyderabad, and Bangalore, ensuring smooth travel options.</p>
+                    <div class="transport-info">
+                        <p><strong>Mumbai to Nashik:</strong> 3.5 hours (₹350-₹600)</p>
+                        <p><strong>Pune to Nashik:</strong> 4 hours (₹300-₹500)</p>
+                        <p><strong>Bangalore to Nashik:</strong> 14 hours (₹1200-₹1800)</p>
+                        <p><strong>Hyderabad to Nashik:</strong> 12 hours (₹1000-₹1500)</p>
+                        <p><strong>Ahmedabad to Nashik:</strong> 10 hours (₹600-₹1500)</p>
+                    </div>
+                </div>
+                
+                <!-- By Train -->
+                <div class="transport-card">
+                    <div class="transport-icon">
+                        <i class="fas fa-train"></i>
+                    </div>
+                    <h3>By Train</h3>
+                    <p>Nashik Road Railway Station is a key hub, located 11 kilometers from the city center. It connects to Mumbai, Hyderabad, Ahmedabad and major cities across India including Delhi and Kolkata.</p>
+                    <div class="transport-info">
+                        <p><strong>Mumbai to Nashik:</strong> 3 hours (₹120-₹500)</p>
+                        <p><strong>Ahmedabad to Nashik:</strong> 12 hours (₹300-₹1600)</p>
+                        <p><strong>Hyderabad to Nashik:</strong> 14 hours (₹650-₹1500)</p>
+                        <p><strong>Delhi to Nashik:</strong> 18 hours (₹800-₹2000)</p>
+                        <p><strong>Kolkata to Nashik:</strong> 26 hours (₹700-₹2705)</p>
+                    </div>
+                </div>
+                
+                <!-- By Air -->
+                <div class="transport-card">
+                    <div class="transport-icon">
+                        <i class="fas fa-plane"></i>
+                    </div>
+                    <h3>By Air</h3>
+                    <p>Nashik’s nearest airport is Ojhar Nashik International Airport, about 24 kilometers from the city center, offering flights to major Indian cities like Delhi, Bangalore, Hyderabad, Ahmedabad And Pune.
+                    </p>
+                    <div class="transport-info">
+                        <p><strong>Mumbai to Nashik:</strong> 45 minutes (₹2500-₹5000)</p>
+                        <p><strong>Hyderabad to Nashik:</strong> 1.5 Hours(₹3500-₹7000)</p>
+                        <p><strong>Ahmedabad to Nashik:</strong> 2 Hours (₹4000-₹8000)</p>
+                        <p><strong>Delhi to Nashik:</strong> Via Mumbai (₹5000-₹8000)</p>
+                        <p><strong>Nearest Int'l Airport:</strong> (165 km)</p>
+                    </div>
+                </div>
+            </div>
+            
+
+
+            <!-- Inner City Transportation -->
+            <h3 class="subsection-title">Inner City Transportation</h3>
+            <div class="transport-options">
+                <!-- City Buses -->
+                <div class="transport-card">
+                    <div class="transport-icon">
+                        <i class="fas fa-bus"></i>
+                    </div>
+                    <h3>City Buses</h3>
+                    <p>Public buses operated by MSRTC connect major parts of the city For InterCity Transportation Citilinc Is also there</p>
+                    <div class="transport-info">
+                        <p><strong>Fare:</strong> ₹10-₹30 per trip</p>
+                        <p><strong>Frequency:</strong> Every 15-30 minutes</p>
+                        <p><strong>Operating Hours:</strong> 6 AM to 10 PM</p>
+                    </div>
+                </div>
+                
+                <!-- Auto-rickshaws -->
+                <div class="transport-card">
+                    <div class="transport-icon">
+                        <i class="fas fa-taxi"></i>
+                    </div>
+                    <h3>Auto-rickshaws</h3>
+                    <p>Most common mode of transport within the city.</p>
+                    <div class="transport-info">
+                        <p><strong>Base Fare:</strong> ₹20 for first 1.5 km</p>
+                        <p><strong>Per km rate:</strong> ₹12-₹15</p>
+                        <p><strong>Availability:</strong> Throughout the city</p>
+                    </div>
+                </div>
+                
+                <!-- Cabs -->
+                <div class="transport-card">
+                    <div class="transport-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3>Private Cabs</h3>
+                    <p>Convenient for touring the city and surrounding wine regions.</p>
+                    <div class="transport-info">
+                        <p><strong>City Tour:</strong> ₹1500-₹2500 for 8 hours</p>
+                        <p><strong>Vineyard Tour:</strong> ₹2000-₹3500</p>
+                        <p><strong>Per km rate:</strong> ₹15-₹20</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section id="map" class="map-section">
+        <div class="container">
+            <h2 class="section-title">Explore Nashik</h2>
+            <div class="map-container">
+                <div id="nashikMap" style="width: 100%; height: 400px;"></div>
+                <script>
+                    function initMap() {
+    const nashik = { lat: 19.9975, lng: 73.7898 };
+    const map = new google.maps.Map(document.getElementById("nashikMap"), {
+        zoom: 12,
+        center: nashik,
+        mapTypeControl: true,
+        fullscreenControl: true
+    });
+    
+    // Add marker for Nashik city center
+    new google.maps.Marker({
+        position: nashik,
+        map: map,
+        title: "Nashik City Center"
+    });
+    
+    // Add markers for tourist attractions with their corresponding HTML pages
+    const attractions = [
+        { position: {lat: 19.9330, lng: 73.5353}, title: "Trimbakeshwar Temple", page: "trimbak.html" },
+        { position: {lat: 20.0011, lng: 73.7971}, title: "Panchavati", page: "panchvati.html" },
+        { position: {lat: 19.9616, lng: 73.7720}, title: "Pandavleni Caves", page: "pandavleni.html" },
+        { position: {lat: 19.9800, lng: 73.8300}, title: "Sula Vineyards", page: "sula.html" },
+        { position: {lat: 19.9885, lng: 73.7779}, title: "Kalaram Temple", page: "Kalaranm_Temple.html" },
+        { position: {lat: 19.9915, lng: 73.7828}, title: "Coin Museum", page: "coin musum.html" },
+        { position: {lat: 20.3964, lng: 73.9008}, title: "Saptashrungi Temple", page: "saptshrungi.html" },
+        { position: {lat: 19.9409, lng: 73.7324}, title: "Someshwar Waterfall", page: "someshwar.html" },
+        { position: {lat: 20.0152, lng: 73.6841}, title: "Anjaneri Hills", page: "anjaneri.html" },
+        { position: {lat: 19.8425, lng: 74.0067}, title: "Gondeshwar Temple", page: "Gondeshwar.html" },
+        { position: {lat: 19.7618, lng: 74.4747}, title: "Sai Baba Temple", page: "saibaba.html" },
+        { position: {lat: 19.9904, lng: 73.7817}, title: "Kapaleshwar Temple", page: "Kapaleshwar Temple.html" }
+    ];
+    
+    // Create info window
+    const infoWindow = new google.maps.InfoWindow();
+    
+    // Add markers for each attraction
+    attractions.forEach(({position, title, page}) => {
+        const marker = new google.maps.Marker({
+            position,
+            map,
+            title,
+            animation: google.maps.Animation.DROP
+        });
+        
+        // Add click listener for info windows with navigation link
+        marker.addListener("click", () => {
+            infoWindow.close();
+            
+            // Create content with clickable link that navigates to the attraction's page
+            const content = `
+                <div style="padding: 10px; text-align: center;">
+                    <strong>${title}</strong>
+                    <br><br>
+                    <a href="${page}" style="
+                        display: inline-block;
+                        background-color: #1e88e5;
+                        color: white;
+                        padding: 6px 12px;
+                        text-decoration: none;
+                        border-radius: 4px;
+                        font-size: 14px;">
+                        View Details
+                    </a>
+                </div>
+            `;
+            
+            infoWindow.setContent(content);
+            infoWindow.open(map, marker);
+        });
+        
+        // Optional: Add direct click navigation without info window
+        // Uncomment this if you want direct navigation upon marker click
+        /*
+        marker.addListener("click", () => {
+            window.location.href = page;
+        });
+        */
+    });
+}
+                    
+                </script>
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2Qmkh2GJW1jtyKsaUMsrNDlp4qfCH4mY&callback=initMap" async defer></script>
+                <!-- Interactive Map Placeholder - In real implementation, this would be Google Maps API -->
+                <img src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2Qmkh2GJW1jtyKsaUMsrNDlp4qfCH4mY"" alt="Nashik Map" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>About Nashik Tourism</h3>
+                    <p>Discover the divine city of Nashik, known for its religious significance, vineyards, and natural beauty. Our guide helps you explore this cultural gem in Maharashtra, India.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#destinations">Tourist Spots</a></li>
+                        <li><a href="#transportation">Transport</a></li>
+                        <li><a href="#map">Map</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Destinations</h3>
+                    <ul class="footer-links">
+                        <li><a href="trimbak.html">Trimbakeshwar Temple</a></li>
+                        <li><a href="panchvati.html">Panchavati</a></li>
+                        <li><a href="sula.html">Sula Vineyards</a></li>
+                        <li><a href="pandavleni.html">Pandavleni Caves</a></li>
+                        <li><a href="all-destinations.html">View All</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Sandip University, Nashik </p>
+                    <p><i class="fas fa-phone"></i> +91 253 2578954</p>
+                    <p><i class="fas fa-envelope"></i> info@discovernashik.com</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Safar Setu. All Rights Reserved.</p>
+            </div>
+        </div>
+
+          <!-- Chat toggle button -->
+  <div class="chat-toggle" id="chatToggle">
+    <i>💬</i>
+  </div>
+
+  <!-- Chat container -->
+  <div class="chat-container" id="chatContainer">
+    <div class="chat-header">
+      <img src="/api/placeholder/30/30" alt="Nashik Tourism Bot">
+      <div class="chat-title">Nashik Tourism Assistant</div>
+      <div class="language-selector">
+        <select id="languageSelector">
+          <option value="en">English</option>
+          <option value="hi">हिंदी</option>
+        </select>
+      </div>
+      <div class="chat-controls">
+        <button id="minimizeChat">−</button>
+      </div>
+    </div>
+    <div class="chat-messages" id="chatMessages"></div>
+    <div class="chat-input">
+      <input type="text" id="userInput" placeholder="Ask about Nashik tourism...">
+      <button id="sendMessage">➤</button>
+    </div>
+  </div>
+
+  <!-- Nashik Tourist Review Widget - Start -->
+<div class="nashik-review-widget" id="nashikReviewWidget">
+    <!-- Collapsible Logo/Button -->
+    <div class="review-widget-trigger" id="reviewWidgetTrigger">
+      <div class="trigger-icon">💬</div>
+      <span>Reviews</span>
+    </div>
+    
+    <!-- Expandable Review Panel -->
+    <div class="review-widget-panel" id="reviewWidgetPanel">
+      <div class="panel-header">
+        <h3>Nashik Tourist Reviews</h3>
+        <button class="close-button" id="closeReviewPanel">×</button>
+      </div>
+      
+      <div class="panel-tabs">
+        <button class="panel-tab active" data-tab="read">Read Reviews</button>
+        <button class="panel-tab" data-tab="write">Add Your Review</button>
+      </div>
+      
+      <!-- Read Reviews Tab -->
+      <div class="panel-content active" id="readReviewsTab">
+        <div class="location-filter">
+          <select id="reviewLocationFilter">
+            <option value="all">All Nashik Locations</option>
+            <option value="Sula Vineyards">Sula Vineyards</option>
+            <option value="Trimbakeshwar Temple">Trimbakeshwar Temple</option>
+            <option value="Pandavleni Caves">Pandavleni Caves</option>
+            <option value="Someshwar Waterfall">Someshwar Waterfall</option>
+            <option value="Coin Museum">Coin Museum</option>
+            <option value="Saptashrungi Gad">Saptashrungi Gad</option>
+          </select>
+        </div>
+        
+        <div class="reviews-container" id="reviewsList">
+          <!-- Reviews will be loaded here -->
+          <div class="empty-reviews-message">
+            <p>No reviews yet for this location.</p>
+            <button class="write-review-btn" id="writeFirstReview">Be the first to review!</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Write Review Tab -->
+      <div class="panel-content" id="writeReviewTab">
+        <form id="reviewForm">
+          <div class="form-group">
+            <label for="reviewLocation">Location:</label>
+            <select id="reviewLocation" required>
+              <option value="">Select location in Nashik</option>
+              <option value="Sula Vineyards">Sula Vineyards</option>
+              <option value="Trimbakeshwar Temple">Trimbakeshwar Temple</option>
+              <option value="Pandavleni Caves">Pandavleni Caves</option>
+              <option value="Someshwar Waterfall">Someshwar Waterfall</option>
+              <option value="Coin Museum">Coin Museum</option>
+              <option value="Saptashrungi Gad">Saptashrungi Gad</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label>Your Rating:</label>
+            <div class="star-rating">
+              <input type="radio" id="star5" name="rating" value="5" required>
+              <label for="star5">★</label>
+              <input type="radio" id="star4" name="rating" value="4">
+              <label for="star4">★</label>
+              <input type="radio" id="star3" name="rating" value="3">
+              <label for="star3">★</label>
+              <input type="radio" id="star2" name="rating" value="2">
+              <label for="star2">★</label>
+              <input type="radio" id="star1" name="rating" value="1">
+              <label for="star1">★</label>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <input type="text" id="reviewTitle" placeholder="Title of your review" required>
+          </div>
+          
+          <div class="form-group">
+            <textarea id="reviewText" placeholder="Share your experience in Nashik..." required></textarea>
+          </div>
+          
+          <div class="form-group">
+            <input type="text" id="reviewerName" placeholder="Your name" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="visitDate">Date of visit:</label>
+            <input type="date" id="visitDate" required>
+          </div>
+          
+          <button type="submit" class="submit-review-btn">Submit Review</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+    </footer>
+
+ <script src="script.js"></script> 
+ 
+</body>
+</html>

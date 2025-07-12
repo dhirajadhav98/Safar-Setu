@@ -1,0 +1,2333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safar Setu - Welcome to Nashik Tourism</title>
+    
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Sign-In -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <!-- EmailJS for sending real emails -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    
+    <style>
+        :root {
+            --primary-color: #4682B4;
+            --secondary-color: #FFD700;
+            --accent-color: #e74c3c;
+            --text-color: #333;
+            --light-text: #fff;
+            --light-bg: #f8f9fa;
+            --border-color: #ddd;
+            --box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0;
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        nav ul li a.active, nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        nav ul li a.active:after, nav ul li a:hover:after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-image: url('path/to/your-image.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 500px;
+            position: relative;
+        }
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1920/1080') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--light-text);
+            margin-top: 70px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero-content h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .primary-button, .secondary-button {
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            outline: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .primary-button {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+        }
+
+        .secondary-button {
+            background-color: transparent;
+            color: var(--light-text);
+            border: 2px solid var(--light-text);
+        }
+
+        .primary-button:hover {
+            background-color: #3a6d96;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .secondary-button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 1100;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background-color: #ffffff;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            max-width: 500px;
+            position: relative;
+            box-shadow: var(--box-shadow);
+            animation: modalFadeIn 0.3s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        @keyframes modalFadeIn {
+            from {opacity: 0; transform: translateY(-30px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #aaa;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            color: var(--text-color);
+        }
+
+        .modal-content h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+            font-size: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            transition: var(--transition);
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(70, 130, 180, 0.2);
+            outline: none;
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        .form-options a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .submit-button:hover {
+            background-color: #3a6d96;
+        }
+
+        .social-login {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .social-login p {
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .social-login p:before, .social-login p:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 40%;
+            height: 1px;
+            background-color: var(--border-color);
+        }
+
+        .social-login p:before {
+            left: 0;
+        }
+
+        .social-login p:after {
+            right: 0;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-btn {
+            padding: 10px 20px;
+            border-radius: 4px;
+            border: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 45%;
+        }
+
+        .google-btn {
+            background-color: #fff;
+            color: #757575;
+            border: 1px solid #ddd;
+        }
+
+        .facebook-btn {
+            background-color: #3b5998;
+            color: white;
+        }
+
+        .google-btn:hover, .facebook-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+
+        .google-btn:active, .facebook-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Loading state for social buttons */
+        .social-btn.loading {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .social-btn.loading:hover {
+            transform: none;
+        }
+
+        /* Email notification animations */
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Force modal visibility when active */
+        .modal.show {
+            display: block !important;
+            animation: fadeIn 0.3s ease;
+        }
+
+        /* Ensure buttons are clickable */
+        .primary-button, .secondary-button {
+            pointer-events: auto !important;
+            cursor: pointer !important;
+        }
+
+        /* Enhanced checkbox and radio button styling */
+        .checkbox-group, .radio-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-top: 8px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+
+        .checkbox-item, .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background-color: white;
+            border-radius: 6px;
+            border: 1px solid #dee2e6;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .checkbox-item:hover, .radio-item:hover {
+            background-color: #e3f2fd;
+            border-color: var(--primary-color);
+            transform: translateY(-1px);
+        }
+
+        .checkbox-item input, .radio-item input {
+            width: 18px;
+            height: 18px;
+            margin: 0;
+            cursor: pointer;
+        }
+
+        .checkbox-item label, .radio-item label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: 500;
+            color: #495057;
+            flex: 1;
+        }
+
+        .checkbox-item input:checked + label, .radio-item input:checked + label {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* CAPTCHA styling */
+        .captcha-container {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .captcha-container:hover {
+            border-color: var(--primary-color);
+            background-color: #f0f8ff;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(70, 130, 180, 0.15);
+        }
+
+        .captcha-container.verified {
+            border-color: #4caf50;
+            background-color: #f1f8e9;
+        }
+
+        .captcha-checkbox {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            accent-color: var(--primary-color);
+        }
+
+        .captcha-label {
+            font-weight: 500;
+            color: #333;
+            cursor: pointer;
+            flex: 1;
+            user-select: none;
+        }
+
+        .captcha-icon {
+            width: 32px;
+            height: 32px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%234285f4"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>') no-repeat center;
+            background-size: contain;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .captcha-container:hover .captcha-icon {
+            opacity: 1;
+        }
+
+        /* Success Modal Styling */
+        .success-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .success-modal.show {
+            display: flex !important;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .success-content {
+            background: linear-gradient(135deg, #4caf50, #45a049);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 450px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            animation: successPop 0.6s ease;
+            position: relative;
+        }
+
+        @keyframes successPop {
+            0% {
+                transform: scale(0.5) rotate(-5deg);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.1) rotate(2deg);
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        .success-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .success-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .success-message {
+            font-size: 16px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .success-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .success-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .continue-btn {
+            background-color: white;
+            color: #4caf50;
+        }
+
+        .continue-btn:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-2px);
+        }
+
+        .stay-btn {
+            background-color: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .stay-btn:hover {
+            background-color: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .error-message {
+            color: var(--accent-color);
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .create-account-link {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .create-account-link a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .create-account-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 80px 0;
+            background-color: var(--light-bg);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            position: relative;
+            color: var(--primary-color);
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.5s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: var(--light-bg);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            background-color: var(--primary-color);
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 15px;
+            font-size: 20px;
+            color: var(--primary-color);
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 15px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 60px 0 30px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            font-size: 20px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-section h3:after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary-color);
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-color);
+            padding-left: 5px;
+        }
+
+        .footer-section p {
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: var(--transition);
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            color: #999;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 15px 4%;
+            }
+            
+            nav ul li {
+                margin-left: 15px;
+            }
+            
+            .hero-content h2 {
+                font-size: 36px;
+            }
+            
+            .hero-content p {
+                font-size: 18px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .primary-button, .secondary-button {
+                padding: 12px 30px;
+                font-size: 16px;
+                width: 100%;
+                max-width: 250px;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .modal-content {
+                padding: 20px;
+                margin: 30px auto;
+            }
+
+            .radio-group, .checkbox-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-container {
+                flex-direction: column;
+                padding: 10px 4%;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+            }
+            
+            nav ul li {
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+            
+            .hero-content h2 {
+                font-size: 28px;
+            }
+            
+            .hero-content p {
+                font-size: 16px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .feature-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="assets/images/safar setu logo.png" alt="Safar Setu Logo">
+                <h1>Safar Setu</h1>
+            </div>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+   <section class="hero" style="background-image: url('assets/images/nashikbg.jpg');background-size: cover; background-position: center;">
+        <div class="hero-content">
+            <h2>Discover the Divine Beauty of Nashik</h2>
+            <p>India's wine capital awaits with ancient temples, scenic vineyards, and rich cultural heritage</p>
+            <div class="cta-buttons">
+                <button id="loginButton" class="primary-button" onclick="openLoginModal()">Login</button>
+                <button id="signupButton" class="secondary-button" onclick="openSignupModal()">Sign Up</button>
+            </div>
+            
+            <!-- Debug info (remove in production) -->
+            <div style="margin-top: 20px; text-align: center;">
+                <small style="color: rgba(255,255,255,0.7);">
+                    Debug: <button onclick="testModals()" style="background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 12px;">Test Modals</button>
+                </small>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeAllModals()">&times;</span>
+            <h2>Login to Safar Setu</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                    <div class="error-message" id="emailError">Please enter a valid email address</div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                    <div class="error-message" id="passwordError">Password is required</div>
+                </div>
+                <div class="form-options">
+                    <label>
+                        <input type="checkbox" id="rememberMe" name="remember"> Remember me
+                    </label>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                </div>
+                
+                <!-- CAPTCHA Section for Login -->
+                <div class="captcha-container">
+                    <input type="checkbox" id="loginCaptchaCheck" class="captcha-checkbox" required>
+                    <label for="loginCaptchaCheck" class="captcha-label">I'm not a robot</label>
+                    <div class="captcha-icon"></div>
+                </div>
+                <div class="error-message" id="loginCaptchaError">Please verify that you are not a robot</div>
+                
+               <button type="button" class="submit-button" onclick="window.location.href='Home.html'">Login</button>
+
+                <div class="social-login">
+                    <p>Or login with</p>
+                    <div class="social-icons">
+                        <div id="googleLoginBtn" class="social-btn google-btn">
+                            <i class="fab fa-google"></i> Google
+                        </div>
+                        <button type="button" id="facebookLoginBtn" class="social-btn facebook-btn">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </button>
+                    </div>
+                    <button type="button" id="customizeEmailBtn" onclick="openEmailCustomizationModal()" style="margin-top: 15px; background: none; border: 1px solid var(--primary-color); color: var(--primary-color); padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 14px;">
+                        ✏️ Customize Welcome Emails
+                    </button>
+                    <!-- Google Sign-In Button -->
+                    <div id="g_id_onload"
+                         data-client_id="664266745696-9jsm5umm1h6i4sj3vjf9sv8nrh3a9sk4.apps.googleusercontent.com"
+                         data-context="signin"
+                         data-ux_mode="popup"
+                         data-callback="handleCredentialResponse"
+                         data-auto_prompt="false">
+                    </div>
+                </div>
+                <div class="create-account-link">
+                    <p>Don't have an account? <a href="#" id="showSignupForm" onclick="switchToSignup()">Create New Account</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeAllModals()">&times;</span>
+            <h2>Create an Account</h2>
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="fullName">Full Name *</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                    <div class="error-message" id="fullNameError">Full name is required</div>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email *</label>
+                    <input type="email" id="signupEmail" name="email" required>
+                    <div class="error-message" id="signupEmailError">Please enter a valid email address</div>
+                </div>
+                <div class="form-group">
+                    <label for="mobileNumber">Mobile Number *</label>
+                    <input type="tel" id="mobileNumber" name="mobileNumber" required>
+                    <div class="error-message" id="mobileError">Mobile number is required</div>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password *</label>
+                    <input type="password" id="signupPassword" name="password" required>
+                    <div class="error-message" id="signupPasswordError">Password is required</div>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password *</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                    <div class="error-message" id="confirmPasswordError">Passwords do not match</div>
+                </div>
+                <div class="form-group">
+                    <label for="country">Country *</label>
+                    <select id="country" name="country" required>
+                        <option value="">Select Country</option>
+                        <option value="India">India</option>
+                        <option value="USA">United States</option>
+                        <option value="UK">United Kingdom</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Australia">Australia</option>
+                        <option value="Germany">Germany</option>
+                        <option value="France">France</option>
+                        <option value="Japan">Japan</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <div class="error-message" id="countryError">Please select a country</div>
+                </div>
+                <div class="form-group">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" id="dob" name="dob">
+                </div>
+                <div class="form-group">
+                    <label>Gender</label>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="male" name="gender" value="male">
+                            <label for="male">👨 Male</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="female" name="gender" value="female">
+                            <label for="female">👩 Female</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="other" name="gender" value="other">
+                            <label for="other">⚧️ Other</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Travel Interests</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="religious" name="interests" value="religious">
+                            <label for="religious">🏛️ Religious Sites</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="adventure" name="interests" value="adventure">
+                            <label for="adventure">🏔️ Adventure</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="cultural" name="interests" value="cultural">
+                            <label for="cultural">🎭 Cultural</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="nature" name="interests" value="nature">
+                            <label for="nature">🌿 Nature</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="wine" name="interests" value="wine">
+                            <label for="wine">🍷 Wine Tourism</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="photography" name="interests" value="photography">
+                            <label for="photography">📸 Photography</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CAPTCHA Section -->
+                <div class="captcha-container">
+                    <input type="checkbox" id="captchaCheck" class="captcha-checkbox" required>
+                    <label for="captchaCheck" class="captcha-label">I'm not a robot</label>
+                    <div class="captcha-icon"></div>
+                </div>
+                <div class="error-message" id="captchaError">Please verify that you are not a robot</div>
+                
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="acceptTerms" name="terms" required> 
+                        I agree to the <a href="#" target="_blank">Terms and Conditions</a> *
+                    </label>
+                    <div class="error-message" id="termsError">You must accept the terms and conditions</div>
+                </div>
+                <button type="submit" class="submit-button">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Email Customization Modal -->
+    <div id="emailCustomizationModal" class="modal">
+        <div class="modal-content" style="max-width: 800px; max-height: 90vh; overflow-y: auto;">
+            <span class="close-modal" onclick="closeAllModals()">&times;</span>
+            <h2>✏️ Customize Welcome Emails</h2>
+            
+            <div style="margin-bottom: 20px;">
+                <label for="emailTemplate">Choose Email Template:</label>
+                <select id="emailTemplate" style="width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ddd; border-radius: 5px;">
+                    <option value="regular">Regular Signup Email</option>
+                    <option value="google">Google Login Email</option>
+                    <option value="facebook">Facebook Login Email</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="emailSubject">Email Subject:</label>
+                <input type="text" id="emailSubject" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px;" placeholder="Enter email subject...">
+            </div>
+            
+            <div class="form-group">
+                <label for="emailContent">Email Content (HTML):</label>
+                <textarea id="emailContent" rows="15" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-family: monospace; font-size: 14px;" placeholder="Enter HTML email content..."></textarea>
+            </div>
+            
+            <div style="display: flex; gap: 10px; justify-content: space-between; margin-top: 20px;">
+                <button type="button" id="previewEmail" style="background-color: #17a2b8; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+                    👁️ Preview Email
+                </button>
+                <button type="button" id="resetTemplate" style="background-color: #ffc107; color: #333; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+                    🔄 Reset to Default
+                </button>
+                <button type="button" id="saveEmailTemplate" style="background-color: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+                    💾 Save Template
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="success-modal">
+        <div class="success-content">
+            <div class="success-icon">🎉</div>
+            <div class="success-title" id="successTitle">Welcome to Safar Setu!</div>
+            <div class="success-message" id="successMessage">
+                Your login was successful! Get ready to explore the divine beauty of Nashik.
+            </div>
+            <div class="success-buttons">
+                <button class="success-btn continue-btn" onclick="proceedToHome()">
+                    🚀 Continue to Dashboard
+                </button>
+                <button class="success-btn stay-btn" onclick="closeSuccessModal()">
+                    📧 Check Email First
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Email Preview Modal -->
+    <div id="emailPreviewModal" class="modal">
+        <div class="modal-content" style="max-width: 700px; max-height: 90vh; overflow-y: auto;">
+            <span class="close-modal" onclick="closeAllModals()">&times;</span>
+            <h2>📧 Email Preview</h2>
+            <div style="border: 2px solid #ddd; border-radius: 8px; padding: 20px; background: #f9f9f9;">
+                <div style="background: white; border-radius: 5px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                    <div id="emailPreviewContent"></div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <button type="button" onclick="closeAllModals()" style="background-color: #6c757d; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+                    Close Preview
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 class="section-title">About Nashik</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="assets/images/about nashik.jpg" alt="Nashik Overview">
+                </div>
+                <div class="about-text">
+                    <p>Nashik is one of India's most significant pilgrimage destinations and has emerged as the country's wine capital. Located on the banks of the Godavari River, this city in Maharashtra seamlessly blends ancient history with modern development.</p>
+                    <p>From the sacred Kumbh Mela, held every 12 years, to the sprawling vineyards producing award-winning wines, Nashik offers a unique mix of spiritual experiences and contemporary attractions.</p>
+                    <p>Sign up or login to access our comprehensive guide to exploring this divine city, featuring detailed information on religious sites, adventure spots, natural wonders, and cultural landmarks.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <h2 class="section-title">Why Choose Safar Setu?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h3>Comprehensive Guide</h3>
+                    <p>Detailed information on all tourist spots, categorized for easy navigation</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <h3>Travel Planning</h3>
+                    <p>Transportation details, estimated costs, and travel times to plan your journey</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Virtual Assistant</h3>
+                    <p>Get your questions answered instantly by our Nashik Tourism Assistant</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Authentic Reviews</h3>
+                    <p>Read genuine reviews from fellow travelers and share your own experiences</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>About Safar Setu</h3>
+                    <p>Your comprehensive guide to exploring Nashik, the divine city known for its religious significance, vineyards, and natural beauty.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#" id="footerLogin" onclick="openLoginModal()">Login</a></li>
+                        <li><a href="#" id="footerSignup" onclick="openSignupModal()">Sign Up</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Sandip University, Nashik </p>
+                    <p><i class="fas fa-phone"></i> +91 253 2578954</p>
+                    <p><i class="fas fa-envelope"></i> info@discovernashik.com</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Safar Setu. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Global functions for modal control (backup solution)
+        function openLoginModal() {
+            console.log('Opening login modal...');
+            const modal = document.getElementById('loginModal');
+            if (modal) {
+                modal.style.display = 'block';
+                modal.classList.add('show');
+                console.log('Login modal opened successfully');
+            } else {
+                console.error('Login modal not found!');
+            }
+        }
+
+        function openSignupModal() {
+            console.log('Opening signup modal...');
+            const modal = document.getElementById('signupModal');
+            if (modal) {
+                modal.style.display = 'block';
+                modal.classList.add('show');
+                console.log('Signup modal opened successfully');
+            } else {
+                console.error('Signup modal not found!');
+            }
+        }
+
+        function closeAllModals() {
+            console.log('Closing all modals...');
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                modal.style.display = 'none';
+                modal.classList.remove('show');
+            });
+        }
+
+        function switchToSignup() {
+            console.log('Switching to signup modal...');
+            closeAllModals();
+            setTimeout(() => {
+                openSignupModal();
+            }, 100);
+        }
+
+        // Success Modal Functions
+        function showSuccessModal(title, message, userName = '') {
+            const modal = document.getElementById('successModal');
+            const titleElement = document.getElementById('successTitle');
+            const messageElement = document.getElementById('successMessage');
+            
+            titleElement.textContent = title;
+            messageElement.innerHTML = message;
+            
+            // Close other modals first
+            closeAllModals();
+            
+            // Show success modal
+            setTimeout(() => {
+                modal.classList.add('show');
+                
+                // Add confetti effect
+                createConfetti();
+            }, 300);
+        }
+
+        function closeSuccessModal() {
+            const modal = document.getElementById('successModal');
+            modal.classList.remove('show');
+        }
+
+        function proceedToHome() {
+            closeSuccessModal();
+            
+            // Show loading overlay
+            const loadingOverlay = document.createElement('div');
+            loadingOverlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(135deg, #4682B4, #5a9bd4);
+                color: white;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                z-index: 20000;
+                font-family: Arial, sans-serif;
+            `;
+            
+            loadingOverlay.innerHTML = `
+                <div style="text-align: center;">
+                    <div style="font-size: 48px; margin-bottom: 20px; animation: spin 2s linear infinite;">🌟</div>
+                    <h2 style="margin-bottom: 10px;">Taking you to your dashboard...</h2>
+                    <p style="opacity: 0.8;">Preparing your personalized Nashik experience</p>
+                    <div style="width: 200px; height: 4px; background: rgba(255,255,255,0.3); border-radius: 2px; margin: 20px auto; overflow: hidden;">
+                        <div style="width: 100%; height: 100%; background: white; border-radius: 2px; animation: loading 2s ease-in-out;"></div>
+                    </div>
+                </div>
+                <style>
+                    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+                    @keyframes loading { 0% { transform: translateX(-100%); } 100% { transform: translateX(0); } }
+                </style>
+            `;
+            
+            document.body.appendChild(loadingOverlay);
+            
+            // Redirect after animation
+            setTimeout(() => {
+                window.location.href = 'home.html';
+            }, 2500);
+        }
+
+        // Confetti Effect for Success
+        function createConfetti() {
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', '#dda0dd'];
+            const confettiContainer = document.createElement('div');
+            confettiContainer.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: 9999;
+            `;
+            
+            document.body.appendChild(confettiContainer);
+            
+            for (let i = 0; i < 50; i++) {
+                const confettiPiece = document.createElement('div');
+                confettiPiece.style.cssText = `
+                    position: absolute;
+                    top: -10px;
+                    left: ${Math.random() * 100}%;
+                    width: 10px;
+                    height: 10px;
+                    background: ${colors[Math.floor(Math.random() * colors.length)]};
+                    animation: confettiFall ${2 + Math.random() * 3}s linear forwards;
+                    transform: rotate(${Math.random() * 360}deg);
+                `;
+                confettiContainer.appendChild(confettiPiece);
+            }
+            
+            // Add confetti animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes confettiFall {
+                    to {
+                        transform: translateY(100vh) rotate(720deg);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Remove confetti after animation
+            setTimeout(() => {
+                document.body.removeChild(confettiContainer);
+                document.head.removeChild(style);
+            }, 5000);
+        }
+
+        // Test function - you can call this from browser console to test
+        function testModals() {
+            console.log('Testing modal functionality...');
+            console.log('Login modal element:', document.getElementById('loginModal'));
+            console.log('Signup modal element:', document.getElementById('signupModal'));
+            console.log('Login button element:', document.getElementById('loginButton'));
+            console.log('Signup button element:', document.getElementById('signupButton'));
+            
+            // Test opening login modal
+            setTimeout(() => {
+                console.log('Opening login modal in 1 second...');
+                openLoginModal();
+            }, 1000);
+            
+            // Test opening signup modal
+            setTimeout(() => {
+                console.log('Opening signup modal in 3 seconds...');
+                closeAllModals();
+                openSignupModal();
+            }, 3000);
+            
+            // Close all modals
+            setTimeout(() => {
+                console.log('Closing all modals in 5 seconds...');
+                closeAllModals();
+            }, 5000);
+        }
+
+        // Initialize EmailJS (for real email sending - you'll need to set up EmailJS account)
+        // Visit https://www.emailjs.com/ to get your keys
+        emailjs.init("YOUR_EMAILJS_PUBLIC_KEY"); // Replace with your EmailJS public key
+
+        // Customized Welcome Email Templates
+        function createWelcomeEmailTemplate(userName, userEmail, loginMethod = 'regular') {
+            const templates = {
+                regular: {
+                    subject: "🎉 Welcome to Safar Setu - Your Nashik Adventure Begins!",
+                    html: `
+                        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f8f9fa;">
+                            <div style="background-color: #4682B4; color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0;">
+                                <h1>🕉️ Welcome to Safar Setu!</h1>
+                                <p style="font-size: 18px; margin: 10px 0;">Your Gateway to Divine Nashik</p>
+                            </div>
+                            <div style="background-color: white; padding: 30px; border-radius: 0 0 10px 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                                <h2 style="color: #4682B4;">Hello ${userName}! 🙏</h2>
+                                <p>Thank you for joining Safar Setu! We're excited to be your companion on your spiritual and cultural journey through Nashik.</p>
+                                
+                                <div style="background-color: #fff3cd; border: 1px solid #ffeaa7; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                                    <h3 style="color: #856404; margin-top: 0;">🌟 What awaits you:</h3>
+                                    <ul style="color: #856404;">
+                                        <li>🏛️ Explore 12 sacred Jyotirlingas and ancient temples</li>
+                                        <li>🍷 Discover premium wineries and vineyards</li>
+                                        <li>🏞️ Find hidden natural gems and scenic spots</li>
+                                        <li>🎭 Experience rich cultural heritage and festivals</li>
+                                        <li>🤖 Get instant help from our AI tourism assistant</li>
+                                    </ul>
+                                </div>
+                                
+                                <div style="text-align: center; margin: 30px 0;">
+                                    <a href="#" style="background-color: #4682B4; color: white; padding: 15px 30px; text-decoration: none; border-radius: 25px; display: inline-block; font-weight: bold;">
+                                        🚀 Start Your Journey
+                                    </a>
+                                </div>
+                                
+                                <hr style="border: 1px solid #eee; margin: 30px 0;">
+                                
+                                <p style="color: #666; font-size: 14px;">
+                                    <strong>Pro Tip:</strong> Download our offline guides before visiting temples for the best experience!
+                                </p>
+                                
+                                <div style="text-align: center; margin-top: 30px; color: #999; font-size: 12px;">
+                                    <p>Happy Travels! 🌺<br>Team Safar Setu</p>
+                                    <p>📍 Sandip University, Nashik | 📞 +91 253 2578954</p>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                facebook: {
+                    subject: "🔵 Welcome from Facebook - Your Nashik Journey Starts!",
+                    html: `
+                        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f8f9fa;">
+                            <div style="background-color: #1877f2; color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0;">
+                                <h1>👋 Welcome via Facebook!</h1>
+                                <p style="font-size: 18px; margin: 10px 0;">Connected and ready to explore! 🌟</p>
+                            </div>
+                            <div style="background-color: white; padding: 30px; border-radius: 0 0 10px 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                                <h2 style="color: #1877f2;">Hi ${userName}! 🙏</h2>
+                                <p>Thanks for connecting with Facebook! Your account (${userEmail}) is now linked to Safar Setu.</p>
+                                
+                                <div style="background-color: #e3f2fd; border: 1px solid #2196f3; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                                    <h3 style="color: #1976d2; margin-top: 0;">🎯 Social Benefits:</h3>
+                                    <ul style="color: #1976d2;">
+                                        <li>📱 Share your travel moments instantly</li>
+                                        <li>👥 Connect with fellow travelers</li>
+                                        <li>🏆 Join travel challenges and contests</li>
+                                        <li>💬 Get community recommendations</li>
+                                    </ul>
+                                </div>
+                                
+                                <div style="text-align: center; margin: 30px 0;">
+                                    <a href="#" style="background-color: #1877f2; color: white; padding: 15px 30px; text-decoration: none; border-radius: 25px; display: inline-block; font-weight: bold;">
+                                        🏛️ Start Exploring Nashik
+                                    </a>
+                                </div>
+                                
+                                <p style="background-color: #f3e5f5; border-left: 4px solid #9c27b0; padding: 15px; color: #7b1fa2;">
+                                    <strong>📸 Pro Tip:</strong> Share your temple visits and get featured on our community page!
+                                </p>
+                                
+                                <div style="text-align: center; margin-top: 30px; color: #999; font-size: 12px;">
+                                    <p>Have an amazing spiritual journey! 🕉️<br>Team Safar Setu</p>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                google: {
+                    subject: "🚀 Quick Start with Google - Welcome to Safar Setu!",
+                    html: `
+                        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f8f9fa;">
+                            <div style="background-color: #4285f4; color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0;">
+                                <h1>🔐 Welcome via Google!</h1>
+                                <p style="font-size: 18px; margin: 10px 0;">Smart choice for quick access! 🎯</p>
+                            </div>
+                            <div style="background-color: white; padding: 30px; border-radius: 0 0 10px 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                                <h2 style="color: #4285f4;">Namaste ${userName}! 🙏</h2>
+                                <p>You're all set! Your Google account (${userEmail}) is now connected to Safar Setu.</p>
+                                
+                                <div style="background-color: #e8f5e8; border: 1px solid #4caf50; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                                    <h3 style="color: #2e7d32; margin-top: 0;">✅ You're ready to explore:</h3>
+                                    <ul style="color: #2e7d32;">
+                                        <li>🗺️ Personalized travel recommendations</li>
+                                        <li>💾 Your preferences are automatically saved</li>
+                                        <li>⚡ Quick access across all devices</li>
+                                        <li>🔔 Get updates on festivals and events</li>
+                                    </ul>
+                                </div>
+                                
+                                <div style="text-align: center; margin: 30px 0;">
+                                    <a href="#" style="background-color: #4285f4; color: white; padding: 15px 30px; text-decoration: none; border-radius: 25px; display: inline-block; font-weight: bold;">
+                                        🏛️ Explore Nashik Now
+                                    </a>
+                                </div>
+                                
+                                <p style="background-color: #fff3e0; border-left: 4px solid #ff9800; padding: 15px; color: #e65100;">
+                                    <strong>🎁 Special Offer:</strong> As a Google user, you get priority access to our premium travel guides!
+                                </p>
+                                
+                                <div style="text-align: center; margin-top: 30px; color: #999; font-size: 12px;">
+                                    <p>Enjoy your spiritual journey! 🕉️<br>Team Safar Setu</p>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                }
+            };
+            
+            return templates[loginMethod] || templates.regular;
+        }
+
+        // Enhanced Email Sending Function
+        async function sendCustomizedWelcomeEmail(userName, userEmail, loginMethod = 'regular') {
+            const emailTemplate = createWelcomeEmailTemplate(userName, userEmail, loginMethod);
+            
+            // Show sending notification
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #4682B4, #5a9bd4);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 10px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+                z-index: 9999;
+                font-family: Arial, sans-serif;
+                max-width: 300px;
+                animation: slideIn 0.3s ease;
+            `;
+            notification.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-paper-plane" style="font-size: 18px;"></i>
+                    <div>
+                        <strong>Sending Welcome Email...</strong>
+                        <br><small>to ${userEmail}</small>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(notification);
+            
+            // Simulate email sending delay
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            
+            // Update notification to success
+            notification.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-check-circle" style="font-size: 18px; color: #4caf50;"></i>
+                    <div>
+                        <strong>Welcome Email Sent!</strong>
+                        <br><small>Check your inbox 📧</small>
+                    </div>
+                </div>
+            `;
+            notification.style.background = 'linear-gradient(135deg, #4caf50, #66bb6a)';
+            
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => document.body.removeChild(notification), 300);
+            }, 3000);
+            
+            // For demo: Show email preview in console
+            console.log('📧 Welcome Email Sent:', {
+                to: userEmail,
+                subject: emailTemplate.subject,
+                method: loginMethod,
+                timestamp: new Date().toISOString()
+            });
+            
+            /* 
+            FOR REAL EMAIL SENDING (Uncomment and configure):
+            
+            try {
+                await emailjs.send(
+                    'YOUR_SERVICE_ID',    // Get from EmailJS dashboard
+                    'YOUR_TEMPLATE_ID',   // Create template in EmailJS
+                    {
+                        to_email: userEmail,
+                        to_name: userName,
+                        subject: emailTemplate.subject,
+                        html_content: emailTemplate.html,
+                        login_method: loginMethod
+                    }
+                );
+            } catch (error) {
+                console.error('Email sending failed:', error);
+            }
+            */
+        }
+
+        // Google OAuth Response Handler
+        function handleCredentialResponse(response) {
+            try {
+                // Decode the JWT token
+                const responsePayload = decodeJwtResponse(response.credential);
+                
+                console.log("✅ Google Login Successful!");
+                console.log("User ID: " + responsePayload.sub);
+                console.log('Name: ' + responsePayload.name);
+                console.log('Email: ' + responsePayload.email);
+                console.log("Profile Picture: " + responsePayload.picture);
+                
+                // Send customized welcome email
+                sendCustomizedWelcomeEmail(responsePayload.name, responsePayload.email, 'google');
+                
+                // Save user info
+                const userData = {
+                    id: responsePayload.sub,
+                    name: responsePayload.name,
+                    email: responsePayload.email,
+                    picture: responsePayload.picture,
+                    loginMethod: 'google',
+                    loginTime: new Date().toISOString(),
+                    emailVerified: responsePayload.email_verified
+                };
+                
+                localStorage.setItem('currentUser', JSON.stringify(userData));
+                
+                // Show success modal instead of immediate redirect
+                showSuccessModal(
+                    `Welcome ${responsePayload.name}! 🚀`,
+                    `🎉 Google login successful!<br>
+                     📧 Welcome email sent to ${responsePayload.email}<br>
+                     ⚡ Quick access activated for all your devices<br>
+                     🎁 Premium Google user benefits unlocked!`
+                );
+                
+            } catch (error) {
+                console.error('Google login error:', error);
+                alert('❌ Google login failed. Please try again.');
+            }
+        }
+
+        // Decode JWT token
+        function decodeJwtResponse(token) {
+            const base64Url = token.split('.')[1];
+            const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            }).join(''));
+            return JSON.parse(jsonPayload);
+        }
+
+        // Initialize Google Sign-In with real OAuth
+        function initializeGoogleSignIn() {
+            window.addEventListener('load', function() {
+                // Initialize Google Sign-In
+                if (typeof google !== 'undefined') {
+                    google.accounts.id.initialize({
+                        client_id: "664266745696-9jsm5umm1h6i4sj3vjf9sv8nrh3a9sk4.apps.googleusercontent.com",
+                        callback: handleCredentialResponse,
+                        auto_select: false,
+                        cancel_on_tap_outside: true
+                    });
+                }
+                
+                // Custom Google button click handler
+                const googleBtn = document.getElementById('googleLoginBtn');
+                googleBtn.addEventListener('click', function() {
+                    // Add loading state
+                    this.style.opacity = '0.7';
+                    this.style.pointerEvents = 'none';
+                    this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Opening Google...';
+                    
+                    if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
+                        // Try Google One Tap first
+                        google.accounts.id.prompt((notification) => {
+                            console.log('Google prompt notification:', notification);
+                            
+                            if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+                                console.log('One Tap not available, trying alternative method...');
+                                // Fallback: Use renderButton method for account picker
+                                showGoogleSignInButton();
+                            }
+                        });
+                    } else {
+                        console.log('Google Sign-In not loaded, showing fallback...');
+                        alert('⚠️ Google Sign-In is not available.\n\nTo enable real Google login:\n1. Get a Google Client ID from Google Cloud Console\n2. Replace the client_id in the code\n3. Ensure your domain is authorized\n\nFor now, please use regular email login.');
+                    }
+                    
+                    // Reset button after delay
+                    setTimeout(() => {
+                        this.style.opacity = '1';
+                        this.style.pointerEvents = 'auto';
+                        this.innerHTML = '<i class="fab fa-google"></i> Google';
+                    }, 3000);
+                });
+
+                function showGoogleSignInButton() {
+                    // Create a temporary container for Google's sign-in button
+                    const tempContainer = document.createElement('div');
+                    tempContainer.style.cssText = `
+                        position: fixed;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        z-index: 10001;
+                        background: white;
+                        padding: 30px;
+                        border-radius: 15px;
+                        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                        text-align: center;
+                    `;
+                    
+                    tempContainer.innerHTML = `
+                        <h3 style="margin-bottom: 20px; color: #333;">Sign in with Google</h3>
+                        <div id="tempGoogleBtn"></div>
+                        <button onclick="closeTempContainer()" style="margin-top: 15px; background: none; border: 1px solid #ddd; padding: 8px 16px; border-radius: 4px; cursor: pointer;">Cancel</button>
+                    `;
+                    
+                    // Add backdrop
+                    const backdrop = document.createElement('div');
+                    backdrop.style.cssText = `
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: rgba(0,0,0,0.5);
+                        z-index: 10000;
+                    `;
+                    
+                    document.body.appendChild(backdrop);
+                    document.body.appendChild(tempContainer);
+                    
+                    // Render Google Sign-In button
+                    google.accounts.id.renderButton(
+                        document.getElementById('tempGoogleBtn'),
+                        {
+                            theme: 'outline',
+                            size: 'large',
+                            text: 'signin_with',
+                            width: 250
+                        }
+                    );
+                    
+                    window.closeTempContainer = function() {
+                        document.body.removeChild(backdrop);
+                        document.body.removeChild(tempContainer);
+                    };
+                }
+            });
+        }
+
+        // Facebook Login Handler
+        function initializeFacebookLogin() {
+            const facebookBtn = document.getElementById('facebookLoginBtn');
+            facebookBtn.addEventListener('click', function() {
+                // Add loading state
+                this.style.opacity = '0.7';
+                this.style.pointerEvents = 'none';
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Connecting...';
+                
+                // Simulate Facebook login process
+                setTimeout(() => {
+                    simulateFacebookLogin();
+                    
+                    // Reset button state
+                    this.style.opacity = '1';
+                    this.style.pointerEvents = 'auto';
+                    this.innerHTML = '<i class="fab fa-facebook-f"></i> Facebook';
+                }, 2000);
+            });
+        }
+
+        // Simulate Facebook Login
+        function simulateFacebookLogin() {
+            const demoFacebookUser = {
+                id: 'facebook_' + Date.now(),
+                name: 'Demo Facebook User',
+                email: 'demo.facebook@gmail.com',
+                picture: 'https://via.placeholder.com/150/1877f2/white?text=FB',
+                loginMethod: 'facebook',
+                loginTime: new Date().toISOString()
+            };
+            
+            // Send customized welcome email
+            sendCustomizedWelcomeEmail(demoFacebookUser.name, demoFacebookUser.email, 'facebook');
+            
+            // Save user info
+            localStorage.setItem('currentUser', JSON.stringify(demoFacebookUser));
+            
+            // Show success modal instead of immediate redirect
+            showSuccessModal(
+                `Welcome ${demoFacebookUser.name}! 🔵`,
+                `🎉 Facebook login successful!<br>
+                 📧 Welcome email sent to ${demoFacebookUser.email}<br>
+                 👥 Social features activated<br>
+                 📸 Ready to share your Nashik moments!`
+            );
+        }
+
+        // Validation Functions
+        function validateEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function showError(elementId, show = true) {
+            const errorElement = document.getElementById(elementId);
+            if (errorElement) {
+                errorElement.style.display = show ? 'block' : 'none';
+            }
+        }
+
+        function validateLoginForm() {
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const captcha = document.getElementById('loginCaptchaCheck').checked;
+            let isValid = true;
+
+            // Reset error messages
+            showError('emailError', false);
+            showError('passwordError', false);
+            showError('loginCaptchaError', false);
+
+            // Email validation
+            if (!email) {
+                showError('emailError', true);
+                document.getElementById('emailError').textContent = 'Email is required';
+                isValid = false;
+            } else if (!validateEmail(email)) {
+                showError('emailError', true);
+                document.getElementById('emailError').textContent = 'Please enter a valid email address';
+                isValid = false;
+            }
+
+            // Password validation
+            if (!password) {
+                showError('passwordError', true);
+                isValid = false;
+            }
+
+            // CAPTCHA validation
+            if (!captcha) {
+                showError('loginCaptchaError', true);
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        function validateSignupForm() {
+            const fullName = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('signupEmail').value.trim();
+            const mobile = document.getElementById('mobileNumber').value.trim();
+            const password = document.getElementById('signupPassword').value.trim();
+            const confirmPassword = document.getElementById('confirmPassword').value.trim();
+            const country = document.getElementById('country').value;
+            const captcha = document.getElementById('captchaCheck').checked;
+            const acceptTerms = document.getElementById('acceptTerms').checked;
+            let isValid = true;
+
+            // Reset all error messages
+            ['fullNameError', 'signupEmailError', 'mobileError', 'signupPasswordError', 
+             'confirmPasswordError', 'countryError', 'captchaError', 'termsError'].forEach(id => {
+                showError(id, false);
+            });
+
+            // Full Name validation
+            if (!fullName) {
+                showError('fullNameError', true);
+                isValid = false;
+            }
+
+            // Email validation
+            if (!email) {
+                showError('signupEmailError', true);
+                document.getElementById('signupEmailError').textContent = 'Email is required';
+                isValid = false;
+            } else if (!validateEmail(email)) {
+                showError('signupEmailError', true);
+                document.getElementById('signupEmailError').textContent = 'Please enter a valid email address';
+                isValid = false;
+            }
+
+            // Mobile validation
+            if (!mobile) {
+                showError('mobileError', true);
+                isValid = false;
+            }
+
+            // Password validation
+            if (!password) {
+                showError('signupPasswordError', true);
+                isValid = false;
+            }
+
+            // Confirm Password validation
+            if (!confirmPassword) {
+                showError('confirmPasswordError', true);
+                document.getElementById('confirmPasswordError').textContent = 'Please confirm your password';
+                isValid = false;
+            } else if (password !== confirmPassword) {
+                showError('confirmPasswordError', true);
+                document.getElementById('confirmPasswordError').textContent = 'Passwords do not match';
+                isValid = false;
+            }
+
+            // Country validation
+            if (!country) {
+                showError('countryError', true);
+                isValid = false;
+            }
+
+            // CAPTCHA validation
+            if (!captcha) {
+                showError('captchaError', true);
+                isValid = false;
+            }
+
+            // Terms validation
+            if (!acceptTerms) {
+                showError('termsError', true);
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        // Local Storage Functions
+        function saveLoginData(email, password) {
+            localStorage.setItem('rememberedEmail', email);
+            localStorage.setItem('rememberedPassword', password);
+        }
+
+        function loadLoginData() {
+            const rememberedEmail = localStorage.getItem('rememberedEmail');
+            const rememberedPassword = localStorage.getItem('rememberedPassword');
+            
+            if (rememberedEmail && rememberedPassword) {
+                document.getElementById('email').value = rememberedEmail;
+                document.getElementById('password').value = rememberedPassword;
+                document.getElementById('rememberMe').checked = true;
+            }
+        }
+
+        function clearLoginData() {
+            localStorage.removeItem('rememberedEmail');
+            localStorage.removeItem('rememberedPassword');
+        }
+
+        function saveUserData(userData) {
+            // Get existing users or create empty array
+            const existingUsers = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
+            
+            // Add new user
+            existingUsers.push(userData);
+            
+            // Save back to localStorage
+            localStorage.setItem('registeredUsers', JSON.stringify(existingUsers));
+        }
+
+        // Modal functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM Content Loaded - Setting up modals...');
+            
+            const loginModal = document.getElementById('loginModal');
+            const signupModal = document.getElementById('signupModal');
+            const emailCustomizationModal = document.getElementById('emailCustomizationModal');
+            const emailPreviewModal = document.getElementById('emailPreviewModal');
+            const loginButton = document.getElementById('loginButton');
+            const signupButton = document.getElementById('signupButton');
+            const footerLogin = document.getElementById('footerLogin');
+            const footerSignup = document.getElementById('footerSignup');
+            const showSignupForm = document.getElementById('showSignupForm');
+            const closeButtons = document.querySelectorAll('.close-modal');
+            
+            // Debug: Check if elements exist
+            console.log('Login button found:', !!loginButton);
+            console.log('Signup button found:', !!signupButton);
+            console.log('Login modal found:', !!loginModal);
+            console.log('Signup modal found:', !!signupModal);
+            
+            // Load saved login data when page loads
+            loadLoginData();
+            
+            // Initialize social login buttons
+            initializeGoogleSignIn();
+            initializeFacebookLogin();
+            
+            // Initialize email customization
+            initializeEmailCustomization();
+            
+            // Login button click events with debugging
+            if (loginButton && loginModal) {
+                loginButton.addEventListener('click', function(e) {
+                    console.log('Login button clicked!');
+                    e.preventDefault();
+                    loginModal.style.display = 'block';
+                    console.log('Login modal should be visible now');
+                });
+                console.log('Login button event listener added');
+            } else {
+                console.error('Login button or modal not found!');
+            }
+            
+            if (footerLogin && loginModal) {
+                footerLogin.addEventListener('click', function(e) {
+                    console.log('Footer login clicked!');
+                    e.preventDefault();
+                    loginModal.style.display = 'block';
+                });
+            }
+            
+            // Signup button click events with debugging
+            if (signupButton && signupModal) {
+                signupButton.addEventListener('click', function(e) {
+                    console.log('Signup button clicked!');
+                    e.preventDefault();
+                    signupModal.style.display = 'block';
+                    console.log('Signup modal should be visible now');
+                });
+                console.log('Signup button event listener added');
+            } else {
+                console.error('Signup button or modal not found!');
+            }
+            
+            if (footerSignup && signupModal) {
+                footerSignup.addEventListener('click', function(e) {
+                    console.log('Footer signup clicked!');
+                    e.preventDefault();
+                    signupModal.style.display = 'block';
+                });
+            }
+
+            // Show signup form from login modal
+            if (showSignupForm) {
+                showSignupForm.addEventListener('click', function(e) {
+                    console.log('Show signup form clicked!');
+                    e.preventDefault();
+                    loginModal.style.display = 'none';
+                    signupModal.style.display = 'block';
+                });
+            }
+            
+            // Close button click events
+            closeButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    loginModal.style.display = 'none';
+                    signupModal.style.display = 'none';
+                    emailCustomizationModal.style.display = 'none';
+                    emailPreviewModal.style.display = 'none';
+                });
+            });
+            
+            // Click outside modal to close
+            window.addEventListener('click', function(event) {
+                console.log('Window clicked, target:', event.target.className);
+                if (event.target.classList && event.target.classList.contains('modal')) {
+                    console.log('Clicked outside modal, closing...');
+                    closeAllModals();
+                }
+            });
+            
+            // Login Form submission
+            const loginForm = document.getElementById('loginForm');
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (validateLoginForm()) {
+                    const email = document.getElementById('email').value.trim();
+                    const password = document.getElementById('password').value.trim();
+                    const rememberMe = document.getElementById('rememberMe').checked;
+                    
+                    // Extract name from email (simple approach)
+                    const userName = email.split('@')[0].replace(/[._]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                    
+                    // Handle "Remember Me" functionality
+                    if (rememberMe) {
+                        saveLoginData(email, password);
+                    } else {
+                        clearLoginData();
+                    }
+                    
+                    // Send customized welcome email
+                    sendCustomizedWelcomeEmail(userName, email, 'regular');
+                    
+                    // Show success modal instead of immediate redirect
+                    showSuccessModal(
+                        `Welcome back, ${userName}! 🎉`,
+                        `🎯 Login successful!<br>
+                         📧 Welcome email sent to ${email}<br>
+                         🏛️ Ready to explore Nashik's divine beauty?`
+                    );
+                }
+            });
+            
+            // Signup Form submission
+            const signupForm = document.getElementById('signupForm');
+            signupForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (validateSignupForm()) {
+                    // Collect form data
+                    const formData = new FormData(signupForm);
+                    const userData = {};
+                    
+                    // Basic data
+                    userData.fullName = formData.get('fullName');
+                    userData.email = formData.get('email');
+                    userData.mobileNumber = formData.get('mobileNumber');
+                    userData.password = formData.get('password');
+                    userData.country = formData.get('country');
+                    userData.dob = formData.get('dob');
+                    userData.gender = formData.get('gender');
+                    userData.registrationDate = new Date().toISOString();
+                    
+                    // Collect travel interests
+                    const interests = [];
+                    document.querySelectorAll('input[name="interests"]:checked').forEach(function(checkbox) {
+                        interests.push(checkbox.value);
+                    });
+                    userData.travelInterests = interests;
+                    
+                    // Save user data to localStorage
+                    saveUserData(userData);
+                    
+                    // Send customized welcome email
+                    sendCustomizedWelcomeEmail(userData.fullName, userData.email, 'regular');
+                    
+                    // Show success modal with signup-specific message
+                    showSuccessModal(
+                        `Welcome to Safar Setu, ${userData.fullName}! 🎉`,
+                        `✅ Account created successfully!<br>
+                         📧 Welcome guide sent to ${userData.email}<br>
+                         🔐 Please login to start your spiritual journey<br>
+                         🌟 Selected interests: ${interests.join(', ') || 'None selected'}`
+                    );
+                    
+                    // Override the continue button for signup to show login
+                    setTimeout(() => {
+                        const continueBtn = document.querySelector('.continue-btn');
+                        continueBtn.textContent = '🔐 Go to Login';
+                        continueBtn.onclick = function() {
+                            closeSuccessModal();
+                            signupForm.reset();
+                            setTimeout(() => {
+                                openLoginModal();
+                            }, 300);
+                        };
+                    }, 100);
+                }
+            });
+
+            // Real-time validation for confirm password
+            document.getElementById('confirmPassword').addEventListener('input', function() {
+                const password = document.getElementById('signupPassword').value;
+                const confirmPassword = this.value;
+                
+                if (confirmPassword && password !== confirmPassword) {
+                    showError('confirmPasswordError', true);
+                    document.getElementById('confirmPasswordError').textContent = 'Passwords do not match';
+                } else {
+                    showError('confirmPasswordError', false);
+                }
+            });
+
+            // CAPTCHA interaction handlers
+            function setupCaptchaInteraction(checkboxId, containerId) {
+                const checkbox = document.getElementById(checkboxId);
+                const container = document.querySelector(`#${checkboxId}`).closest('.captcha-container');
+                
+                if (checkbox && container) {
+                    checkbox.addEventListener('change', function() {
+                        if (this.checked) {
+                            container.classList.add('verified');
+                            // Add a little success animation
+                            container.style.transform = 'scale(1.02)';
+                            setTimeout(() => {
+                                container.style.transform = 'scale(1)';
+                            }, 200);
+                        } else {
+                            container.classList.remove('verified');
+                        }
+                    });
+
+                    // Make entire container clickable
+                    container.addEventListener('click', function(e) {
+                        if (e.target !== checkbox) {
+                            checkbox.checked = !checkbox.checked;
+                            checkbox.dispatchEvent(new Event('change'));
+                        }
+                    });
+                }
+            }
+
+            // Setup CAPTCHA interactions
+            setupCaptchaInteraction('loginCaptchaCheck');
+            setupCaptchaInteraction('captchaCheck');
+        });
+    </script>
+</body>
+</html>

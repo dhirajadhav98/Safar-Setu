@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sula Vineyards - Safar Setu</title>
+    
+</head>
+<body>
+    
+    <style>
+        /* Base Styles */
+:root {
+    --primary-blue: #1a73e8;
+    --secondary-blue: #4285f4;
+    --primary-green: #34a853;
+    --light-green: #5cbb5c;
+    --white: #ffffff;
+    --light-gray: #f8f9fa;
+    --dark-gray: #4a4a4a;
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--light-gray);
+    color: var(--dark-gray);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header & Navigation */
+header {
+    background-color: rgba(255, 255, 255, 0.95);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.logo h1 {
+    font-size: 24px;
+    color: var(--primary-blue);
+    font-weight: 600;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 30px;
+    position: relative;
+}
+
+nav ul li a {
+    font-weight: 500;
+    padding: 10px 0;
+    position: relative;
+    transition: var(--transition);
+}
+
+nav ul li a:hover {
+    color: var(--primary-blue);
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-blue);
+    bottom: 0;
+    left: 0;
+    transition: var(--transition);
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+.mobile-nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--dark-gray);
+}
+
+/* Hero Section */
+.destination-hero {
+    height: 60vh;
+    display: flex;
+    align-items: flex-end;
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1200/800') center/cover no-repeat;
+    color: var(--white);
+    text-align: left;
+    margin-top: 70px;
+    position: relative;
+    padding-bottom: 50px;
+}
+
+.hero-content {
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.destination-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.destination-hero p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+    max-width: 700px;
+}
+
+.category-badge {
+    display: inline-block;
+    background-color: var(--light-green);
+    color: var(--white);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    background-color: var(--white);
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.breadcrumb-list {
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+.breadcrumb-item {
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb-item:not(:last-child)::after {
+    content: '/';
+    margin: 0 10px;
+    color: #999;
+}
+
+.breadcrumb-link {
+    color: var(--primary-blue);
+    transition: var(--transition);
+}
+
+.breadcrumb-link:hover {
+    color: var(--secondary-blue);
+}
+
+.breadcrumb-current {
+    color: var(--dark-gray);
+    font-weight: 500;
+}
+
+/* Content Section */
+.destination-content {
+    padding: 60px 0;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+}
+
+.main-content h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: var(--dark-gray);
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.main-content h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 3px;
+    background-color: var(--primary-green);
+}
+
+.main-content p {
+    margin-bottom: 20px;
+}
+
+.gallery {
+    margin: 40px 0;
+}
+
+.gallery-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.gallery-item {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.gallery-item:hover {
+    transform: scale(1.03);
+}
+
+.gallery-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.sidebar {
+    background-color: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+    height: fit-content;
+}
+
+.sidebar-section {
+    padding: 25px;
+    border-bottom: 1px solid #eee;
+}
+
+.sidebar-section:last-child {
+    border-bottom: none;
+}
+
+.sidebar-title {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: var(--dark-gray);
+}
+
+.info-list {
+    list-style: none;
+}
+
+.info-list li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.info-icon {
+    color: var(--primary-blue);
+    margin-right: 15px;
+    font-size: 1.1rem;
+    margin-top: 3px;
+}
+
+.info-text strong {
+    display: block;
+    margin-bottom: 2px;
+}
+
+.map-preview {
+    width: 100%;
+    height: 200px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 15px;
+}
+
+.map-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.nearby-list {
+    list-style: none;
+}
+
+.nearby-list li {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.nearby-list li:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.nearby-place {
+    display: flex;
+    align-items: center;
+}
+
+.nearby-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.nearby-info h4 {
+    margin-bottom: 5px;
+    font-size: 1rem;
+}
+
+.nearby-distance {
+    font-size: 0.85rem;
+    color: #777;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: var(--white);
+    padding: 60px 0 20px;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-section h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 30px;
+    height: 2px;
+    background-color: var(--primary-green);
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: #ddd;
+    transition: var(--transition);
+}
+
+.footer-links a:hover {
+    color: var(--primary-green);
+    padding-left: 5px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: var(--white);
+    transition: var(--transition);
+}
+
+.social-icon:hover {
+    background-color: var(--primary-blue);
+    transform: translateY(-5px);
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    .destination-hero h1 {
+        font-size: 2rem;
+    }
+    
+    .destination-hero p {
+        font-size: 1rem;
+    }
+    
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .mobile-nav-toggle {
+        display: block;
+    }
+    
+    nav ul {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        flex-direction: column;
+        background-color: var(--white);
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        transition: var(--transition);
+        padding: 20px 0;
+    }
+    
+    nav ul.active {
+        left: 0;
+    }
+    
+    nav ul li {
+        margin: 0;
+        width: 100%;
+        text-align: center;
+    }
+    
+    nav ul li a {
+        display: block;
+        padding: 15px;
+    }
+}
+    </style>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="assets/images/safar setu logo.png" alt="Safar Setu Logo">
+                <h1>Safar Setu</h1>
+            </div>
+            <button class="mobile-nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="Home.html">Home</a></li>
+                    <li><a href="Home.html#destinations">Tourist Spots</a></li>
+                    <li><a href="Home.html#transportation">Transport</a></li>
+                    <li><a href="Home.html#map">Map</a></li>
+                    <li><a href="Home.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="destination-hero">
+        <div class="container">
+            <div class="hero-content">
+                <span class="category-badge">Wine Tourism</span>
+                <h1>Sula Vineyards</h1>
+                <p>India's premier wine destination offering vineyard tours, wine tasting sessions, and a luxurious resort experience amidst sprawling grape plantations.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb-list">
+                <li class="breadcrumb-item"><a href="Home.html" class="breadcrumb-link">Home</a></li>
+                <li class="breadcrumb-item"><a href="Home.html#destinations" class="breadcrumb-link">Destinations</a></li>
+                <li class="breadcrumb-item"><span class="breadcrumb-current">Sula Vineyards</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Content Section -->
+    <section class="destination-content">
+        <div class="container">
+            <div class="content-grid">
+                <div class="main-content">
+                    <h2>About Sula Vineyards</h2>
+                    <p>Established in 1999, Sula Vineyards is India's first world-class winery and has pioneered wine tourism in the country. Spread over 3,000 acres in the Nashik region, Sula has transformed this area into India's Wine Capital. The vineyards are located approximately 14 km west of Nashik city on the banks of the Godavari River.</p>
+                    
+                    <p>Sula Vineyards offers visitors a complete wine experience with guided tours of the vineyards and production facilities, professional wine tasting sessions, and luxurious accommodations overlooking the vineyards. The winery produces a wide range of wines including red, white, rosé, and sparkling varieties using both international and indigenous grape varieties.</p>
+                    
+                    <p>Beyond wine, Sula has become a lifestyle destination with music festivals, restaurants, and adventure activities making it one of the most visited tourist spots in Maharashtra. The property features sustainable practices including solar power, water conservation, and organic farming methods.</p>
+                    
+                    <h2>Wine Tours & Tasting</h2>
+                    <p>Visitors can enjoy guided tours of the winemaking facilities where experts explain the entire process from grape selection to bottling. These tours offer insights into the art and science of winemaking, including visits to the fermentation tanks, barrel rooms, and bottling plant.</p>
+                    
+                    <p>The highlight for most visitors is the wine tasting session, where sommeliers guide you through a range of Sula's award-winning wines. The tasting room overlooks the vineyards and offers a perfect setting to appreciate the flavors and aromas of different wine varieties. For enthusiasts, there are premium tasting options including reserve wines and food pairings.</p>
+                    
+                    <p>Sula also offers wine workshops where visitors can learn about wine appreciation, food pairings, and even participate in grape stomping during the harvest season (January-March).</p>
+                    
+                    <div class="gallery">
+                        <h3 class="gallery-title">Photo Gallery</h3>
+                        <div class="gallery-grid">
+                            <div class="gallery-item">
+                                <img src="/api/placeholder/400/300" alt="Sula Vineyards Panoramic View" class="gallery-img">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="/api/placeholder/400/300" alt="Wine Tasting Experience" class="gallery-img">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="/api/placeholder/400/300" alt="Grape Plantations" class="gallery-img">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="/api/placeholder/400/300" alt="Barrel Room" class="gallery-img">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="/api/placeholder/400/300" alt="Sula Resort" class="gallery-img">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="/api/placeholder/400/300" alt="SulaFest Music Festival" class="gallery-img">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2>Dining & Accommodation</h2>
+                    <p>Sula offers multiple dining options including the Italian restaurant Little Italy and the all-day dining venue Soma. These restaurants serve Mediterranean, Indian, and Continental cuisines using fresh, locally sourced ingredients, many from Sula's own organic garden. The outdoor dining areas provide spectacular views of the vineyards and sunset.</p>
+                    
+                    <p>For those looking to extend their vineyard experience, Sula provides luxury accommodation options. The Source at Sula is a 23-room resort with modern amenities and vineyard views, while Beyond by Sula offers treehouse accommodations for a unique stay. Both properties feature swimming pools, spa services, and exclusive wine experiences for guests.</p>
+                    
+                    <p>Sula Vineyards also hosts the annual SulaFest, a music and wine festival that attracts visitors from across the country. This two-day event features international and Indian artists, wine tasting sessions, gourmet food, and a festive atmosphere celebrating wine culture.</p>
+                </div>
+                
+                <div class="sidebar">
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">Key Information</h3>
+                        <ul class="info-list">
+                            <li>
+                                <div class="info-icon"><i class="far fa-clock"></i></div>
+                                <div class="info-text">
+                                    <strong>Timing</strong>
+                                    11:00 AM - 10:00 PM (All days)
+                                </div>
+                            </li>
+                            <li>
+                                <div class="info-icon"><i class="fas fa-ticket-alt"></i></div>
+                                <div class="info-text">
+                                    <strong>Entry & Tour Fee</strong>
+                                    ₹950 (includes tour & tasting of 6 wines)
+                                </div>
+                            </li>
+                            <li>
+                                <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                                <div class="info-text">
+                                    <strong>Location</strong>
+                                    Gat 36/2, Govardhan Village, Off Gangapur-Savargaon Road, Nashik
+                                </div>
+                            </li>
+                            <li>
+                                <div class="info-icon"><i class="fas fa-car"></i></div>
+                                <div class="info-text">
+                                    <strong>Distance from Nashik</strong>
+                                    14 km (30 minutes drive)
+                                </div>
+                            </li>
+                            <li>
+                                <div class="info-icon"><i class="fas fa-calendar-alt"></i></div>
+                                <div class="info-text">
+                                    <strong>Best Time to Visit</strong>
+                                    November to March (Harvest season: Jan-Mar)
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">Location</h3>
+                        <div class="map-preview">
+                            <img src="/api/placeholder/400/200" alt="Sula Vineyards on Map">
+                        </div>
+                        <a href="#" style="display: block; text-align: center; margin-top: 15px; color: var(--primary-blue);">
+                            <i class="fas fa-directions"></i> Get Directions
+                        </a>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">Nearby Places</h3>
+                        <ul class="nearby-list">
+                            <li>
+                                <a href="trimbakeshwar.html" class="nearby-place">
+                                    <img src="/api/placeholder/120/120" alt="Trimbakeshwar Temple" class="nearby-img">
+                                    <div class="nearby-info">
+                                        <h4>Trimbakeshwar Temple</h4>
+                                        <span class="nearby-distance">35 km away</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="nashik-grape-gardens.html" class="nearby-place">
+                                    <img src="/api/placeholder/120/120" alt="Nashik Grape Gardens" class="nearby-img">
+                                    <div class="nearby-info">
+                                        <h4>Nashik Grape Gardens</h4>
+                                        <span class="nearby-distance">10 km away</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="coin-museum.html" class="nearby-place">
+                                    <img src="/api/placeholder/120/120" alt="Coin Museum" class="nearby-img">
+                                    <div class="nearby-info">
+                                        <h4>Coin Museum</h4>
+                                        <span class="nearby-distance">18 km away</span>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>About Nashik Tourism</h3>
+                    <p>Discover the divine city of Nashik, known for its religious significance, vineyards, and natural beauty. Our guide helps you explore this cultural gem in Maharashtra, India.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/thetraveller.jd/?utm_source=qr&r=nametag" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="Home.html">Home</a></li>
+                        <li><a href="Home.html#destinations">Tourist Spots</a></li>
+                        <li><a href="Home.html#transportation">Transport</a></li>
+                        <li><a href="Home.html#map">Map</a></li>
+                        <li><a href="Home.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Destinations</h3>
+                    <ul class="footer-links">
+                        <li><a href="trimbakeshwar.html">Trimbakeshwar Temple</a></li>
+                        <li><a href="sula-vineyards.html">Sula Vineyards</a></li>
+                        <li><a href="panchavati.html">Panchavati</a></li>
+                        <li><a href="pandavleni.html">Pandavleni Caves</a></li>
+                        <li><a href="all-destinations.html">View All</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Sandip University, Trimbak Road, Nashik, Maharashtra, India</p>
+                    <p><i class="fas fa-phone"></i> +91 253 2578954</p>
+                    <p><i class="fas fa-envelope"></i> info@discovernashik.com</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Safar Setu. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.getElementById('navToggle');
+            const navMenu = document.getElementById('navMenu');
+            
+            navToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                const icon = navToggle.querySelector('i');
+                if (navMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+            
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                if (window.scrollY > 50) {
+                    header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                    header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+                } else {
+                    header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                    header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

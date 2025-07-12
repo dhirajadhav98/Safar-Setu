@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harihar Fort - Safar Setu</title>
+</head>
+
+<body>
+    <style>
+        /* Base Styles */
+:root {
+    --primary-blue: #1a73e8;
+    --secondary-blue: #4285f4;
+    --primary-green: #34a853;
+    --light-green: #5cbb5c;
+    --white: #ffffff;
+    --light-gray: #f8f9fa;
+    --dark-gray: #4a4a4a;
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--light-gray);
+    color: var(--dark-gray);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header & Navigation */
+header {
+    background-color: rgba(255, 255, 255, 0.95);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.logo h1 {
+    font-size: 24px;
+    color: var(--primary-blue);
+    font-weight: 600;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 30px;
+    position: relative;
+}
+
+nav ul li a {
+    font-weight: 500;
+    padding: 10px 0;
+    position: relative;
+    transition: var(--transition);
+}
+
+nav ul li a:hover {
+    color: var(--primary-blue);
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-blue);
+    bottom: 0;
+    left: 0;
+    transition: var(--transition);
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+.mobile-nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--dark-gray);
+}
+
+/* Hero Section */
+.destination-hero {
+    height: 60vh;
+    display: flex;
+    align-items: flex-end;
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1200/800') center/cover no-repeat;
+    color: var(--white);
+    text-align: left;
+    margin-top: 70px;
+    position: relative;
+    padding-bottom: 50px;
+}
+
+.hero-content {
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.destination-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.destination-hero p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+    max-width: 700px;
+}
+
+.category-badge {
+    display: inline-block;
+    background-color: var(--light-green);
+    color: var(--white);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    background-color: var(--white);
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.breadcrumb-list {
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+.breadcrumb-item {
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb-item:not(:last-child)::after {
+    content: '/';
+    margin: 0 10px;
+    color: #999;
+}
+
+.breadcrumb-link {
+    color: var(--primary-blue);
+    transition: var(--transition);
+}
+
+.breadcrumb-link:hover {
+    color: var(--secondary-blue);
+}
+
+.breadcrumb-current {
+    color: var(--dark-gray);
+    font-weight: 500;
+}
+
+/* Content Section */
+.destination-content {
+    padding: 60px 0;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+}
+
+.main-content h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: var(--dark-gray);
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.main-content h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 3px;
+    background-color: var(--primary-green);
+}
+
+.main-content p {
+    margin-bottom: 20px;
+}
+
+.gallery {
+    margin: 40px 0;
+}
+
+.gallery-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.gallery-item {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.gallery-item:hover {
+    transform: scale(1.03);
+}
+
+.gallery-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.sidebar {
+    background-color: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+    height: fit-content;
+}
+
+.sidebar-section {
+    padding: 25px;
+    border-bottom: 1px solid #eee;
+}
+
+.sidebar-section:last-child {
+    border-bottom: none;
+}
+
+.sidebar-title {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: var(--dark-gray);
+}
+
+.info-list {
+    list-style: none;
+}
+
+.info-list li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.info-icon {
+    color: var(--primary-blue);
+    margin-right: 15px;
+    font-size: 1.1rem;
+    margin-top: 3px;
+}
+
+.info-text strong {
+    display: block;
+    margin-bottom: 2px;
+}
+
+.map-preview {
+    width: 100%;
+    height: 200px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 15px;
+}
+
+.map-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.nearby-list {
+    list-style: none;
+}
+
+.nearby-list li {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.nearby-list li:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.nearby-place {
+    display: flex;
+    align-items: center;
+}
+
+.nearby-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.nearby-info h4 {
+    margin-bottom: 5px;
+    font-size: 1rem;
+}
+
+.nearby-distance {
+    font-size: 0.85rem;
+    color: #777;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: var(--white);
+    padding: 60px 0 20px;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-section h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 30px;
+    height: 2px;
+    background-color: var(--primary-green);
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: #ddd;
+    transition: var(--transition);
+}
+
+.footer-links a:hover {
+    color: var(--primary-green);
+    padding-left: 5px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: var(--white);
+    transition: var(--transition);
+}
+
+.social-icon:hover {
+    background-color: var(--primary-blue);
+    transform: translateY(-5px);
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    .destination-hero h1 {
+        font-size: 2rem;
+    }
+    
+    .destination-hero p {
+        font-size: 1rem;
+    }
+    
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .mobile-nav-toggle {
+        display: block;
+    }
+    
+    nav ul {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        flex-direction: column;
+        background-color: var(--white);
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        transition: var(--transition);
+        padding: 20px 0;
+    }
+    
+    nav ul.active {
+        left: 0;
+    }
+    
+    nav ul li {
+        margin: 0;
+        width: 100%;
+        text-align: center;
+    }
+    
+    nav ul li a {
+        display: block;
+        padding: 15px;
+    }
+}
+    </style>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="assets/images/safar setu logo.png" alt="Safar Setu Logo">
+                <h1>Safar Setu </h1>
+            </div>
+            <button class="mobile-nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="Home.html">Home</a></li>
+                    <li><a href="Home.html#destinations">Tourist Spots</a></li>
+                    <li><a href="Home.html#transportation">Transport</a></li>
+                    <li><a href="Home.html#map">Map</a></li>
+                    <li><a href="Home.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="destination-hero">
+        <div class="container">
+            <div class="hero-content">
+                <span class="category-badge">Hiking & Historical</span>
+                <h1>Harihar Fort</h1>
+                <p>An iconic fort with near-vertical rock-cut steps, offering breathtaking views of the Western Ghats and a challenging trek that rewards adventurers with glimpses of Maharashtra's rich history.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb-list">
+                <li class="breadcrumb-item"><a href="Home.html" class="breadcrumb-link">Home</a></li>
+                <li class="breadcrumb-item"><a href="Home.html#destinations" class="breadcrumb-link">Destinations</a></li>
+                <li class="breadcrumb-item"><span class="breadcrumb-current">Harihar Fort</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Content Section -->
+    <section class="destination-content">
+        <div class="container">
+            <div class="content-grid">
+                <div class="main-content">
+                    <h2>About Harihar Fort</h2>
+                    <p>Harihar Fort, locally known as "Harshagad," is a magnificent hillfort situated at an elevation of 3,676 feet (1,120 meters) in the Nashik district of Maharashtra. Located approximately 40 km from Nashik city, this fort is renowned for its distinctive rock-cut steps carved almost vertically into the mountain face, making it one of the most thrilling trekking destinations in the region.</p>
+                    
+                    <p>What sets Harihar Fort apart from other forts in the Sahyadri range is its unique approach route featuring a 80-degree inclined rock-patch with steps carved directly into the rock. These near-vertical steps, often referred to as the "most dangerous stairs in India," offer not just a challenging climb but also a once-in-a-lifetime adventure for trekking enthusiasts and history buffs alike.</p>
+                    
+                    <p>The fort derives its name from the fusion of two powerful deities in Hindu mythology - "Hari" (Lord Vishnu) and "Har" (Lord Shiva). The strategic positioning of the fort atop a triangular pointed rock makes it naturally fortified on three sides with steep drops, offering commanding views of the surrounding valleys and villages.</p>
+                    
+                    <h2>Historical Significance</h2>
+                    <p>Harihar Fort has a rich historical legacy dating back to the 6th century during the rule of the Kalachuri dynasty. However, it was under the Maratha Empire, particularly during Shivaji Maharaj's reign in the 17th century, that the fort gained strategic importance in the regional defense system. The fort served as a crucial watchtower and military outpost due to its vantage point overlooking key trade and military routes.</p>
+                    
+                    <p>Historical records suggest that the fort changed hands multiple times between the Marathas and the Mughals during various military campaigns. The ingenious design of the fort, with its almost vertical approach path, provided a significant tactical advantage to defenders who could easily repel invaders attempting to climb the treacherous steps.</p>
+                    
+                    <p>The architecture of the fort, though now mostly in ruins, showcases the brilliant military engineering of the medieval period. Remnants of water cisterns, storage rooms, and defensive structures can still be seen, offering glimpses into the fort's glorious past and the lifestyle of its former inhabitants.</p>
+                    
+                    <div class="gallery">
+                        <h3 class="gallery-title">Photo Gallery</h3>
+                        <div class="gallery-grid">
+                            <div class="gallery-item">
+                                <img src="/api/placeholder/400/300" alt="Vertical Steps of Harihar Fort" class="gallery-img">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="/api/placeholder/400/300" alt="Fort Summit View" class="gallery-img">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="/api/placeholder/400/300" alt="Rocky Path to Fort" class="gallery-img">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="/api/placeholder/400/300" alt="Monsoon Trek" class="gallery-img">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="/api/placeholder/400/300" alt="Panoramic Landscape" class="gallery-img">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="/api/placeholder/400/300" alt="Ancient Fort Ruins" class="gallery-img">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2>Trekking Experience</h2>
+                    <p>The trek to Harihar Fort offers a perfect blend of adventure, history, and natural beauty. The journey begins at the base village of Nirgudpada or Harshewadi, from where trekkers follow a well-marked trail through rural landscapes and gradually ascending terrain. The initial part of the trek takes you through farmlands and forest patches, providing glimpses of rural life and the biodiversity of the Western Ghats.</p>
+                    
+                    <p>As you approach the fort, the path becomes steeper and more challenging. The highlight of the trek is undoubtedly the famous 80-degree rock-cut steps that lead to the fort entrance. These steps, carved directly into the rock face with minimal support structures, require careful navigation and a good sense of balance. Though intimidating at first glance, the steps have small natural grooves that provide footholds, making the climb manageable for those with reasonable fitness levels.</p>
+                    
+                    <p>The monsoon season (June to September) transforms the landscape into a lush green paradise with numerous seasonal waterfalls cascading down the mountain slopes. While this enhances the visual beauty of the trek, it also makes the steps slippery and more challenging. During winter months (October to February), the clear skies offer spectacular views stretching to the horizon, making it an ideal time for photography enthusiasts.</p>
+                    
+                    <h2>At the Summit</h2>
+                    <p>Reaching the summit of Harihar Fort is a rewarding experience that compensates for all the effort invested in the climb. The fort top, though relatively small compared to other forts in the region, offers panoramic 360-degree views of the surrounding Sahyadri ranges, lush valleys, and distant villages. On clear days, you can see as far as the Kalsubai peak, the highest point in Maharashtra.</p>
+                    
+                    <p>The main attractions at the fort include ancient water cisterns (water tanks), a small temple dedicated to Lord Shiva, and the ruins of what once were barracks and storage facilities. The triangular shape of the fort top creates natural view points at each corner, perfect for capturing the breathtaking landscapes that stretch out below.</p>
+                    
+                    <p>Many trekkers choose to camp overnight at the fort top to witness the magical sunrise and sunset views. The fort plateau has enough space for camping, though facilities are basic and visitors need to carry all essential supplies. The night sky, clear of light pollution, offers an excellent opportunity for stargazing and astrophotography.</p>
+                    
+                    <h2>Plan Your Visit</h2>
+                    <p>The best time to visit Harihar Fort is during the post-monsoon season from October to February when the weather is pleasant and the terrain is less slippery. However, adventure enthusiasts often prefer the monsoon season (June to September) for its lush greenery and mist-covered landscapes, though extra caution is needed during this period.</p>
+                    
+                    <p>The trek typically takes about 2-3 hours to reach the summit from the base village and about 1-2 hours to descend. It's advisable to start early in the morning to allow ample time at the top and ensure return before sunset, as navigating the steep steps in diminishing light can be hazardous.</p>
+                    
+                    <p>Visitors should wear sturdy trekking shoes with good grip, carry at least 2 liters of water per person, and pack energy-rich snacks. A basic first-aid kit, rainwear (during monsoon), and a flashlight are also recommended. For those planning to camp overnight, appropriate camping gear including warm clothing is essential as temperatures can drop significantly at night.</p>
+                </div>
+                
+                <div class="sidebar">
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">Key Information</h3>
+                        <ul class="info-list">
+                            <li>
+                                <div class="info-icon"><i class="far fa-clock"></i></div>
+                                <div class="info-text">
+                                    <strong>Trek Timing</strong>
+                                    6:00 AM - 6:00 PM (recommended to start by 8 AM)
+                                </div>
+                            </li>
+                            <li>
+                                <div class="info-icon"><i class="fas fa-ticket-alt"></i></div>
+                                <div class="info-text">
+                                    <strong>Entry Fee</strong>
+                                    Free (No entry fee or permits required)
+                                </div>
+                            </li>
+                            <li>
+                                <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                                <div class="info-text">
+                                    <strong>Location</strong>
+                                    Near Nirgudpada/Harshewadi Village, Nashik, Maharashtra
+                                </div>
+                            </li>
+                            <li>
+                                <div class="info-icon"><i class="fas fa-car"></i></div>
+                                <div class="info-text">
+                                    <strong>Distance from Nashik</strong>
+                                    40 km (1.5 hours drive)
+                                </div>
+                            </li>
+                            <li>
+                                <div class="info-icon"><i class="fas fa-hiking"></i></div>
+                                <div class="info-text">
+                                    <strong>Trek Difficulty</strong>
+                                    Moderate to Difficult (2-3 hours one way)
+                                </div>
+                            </li>
+                            <li>
+                                <div class="info-icon"><i class="fas fa-calendar-alt"></i></div>
+                                <div class="info-text">
+                                    <strong>Best Time to Visit</strong>
+                                    October to February (Post-monsoon and Winter)
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">Location</h3>
+                        <div class="map-preview">
+                         
+                        </div>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=Harihar,Nashik" style="display: block; text-align: center; margin-top: 15px; color: var(--primary-blue);">
+                            <i class="fas fa-directions"></i> Get Directions
+                        </a>
+                    </div>
+                    <script>
+                    function initMap() {
+                        // Coordinates for Harihar Fort, Nashik
+                        const hariharFortLocation = { lat: 19.9332, lng: 73.4819 };
+                        
+                        // Create the map centered on Harihar Fort
+                        const map = new google.maps.Map(document.getElementById("map"), {
+                            zoom: 15,
+                            center: hariharFortLocation,
+                        });
+                        
+                        // Add a marker for Harihar Fort
+                        const marker = new google.maps.Marker({
+                            position: hariharFortLocation,
+                            map: map,
+                            title: "Harihar Fort",
+                        });
+                    }
+                </script>
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">What to Bring</h3>
+                        <ul class="info-list">
+                            <li>
+                                <div class="info-icon"><i class="fas fa-tint"></i></div>
+                                <div class="info-text">
+                                    <strong>Water</strong>
+                                    At least 2-3 liters per person
+                                </div>
+                            </li>
+                            <li>
+                                <div class="info-icon"><i class="fas fa-apple-alt"></i></div>
+                                <div class="info-text">
+                                    <strong>Food</strong>
+                                    Energy bars, fruits, sandwiches, nuts
+                                </div>
+                            </li>
+                            <li>
+                                <div class="info-icon"><i class="fas fa-shoe-prints"></i></div>
+                                <div class="info-text">
+                                    <strong>Footwear</strong>
+                                    Trekking shoes with excellent grip
+                                </div>
+                            </li>
+                            <li>
+                                <div class="info-icon"><i class="fas fa-first-aid"></i></div>
+                                <div class="info-text">
+                                    <strong>Safety</strong>
+                                    First aid kit, personal medications
+                                </div>
+                            </li>
+                            <li>
+                                <div class="info-icon"><i class="fas fa-camera"></i></div>
+                                <div class="info-text">
+                                    <strong>Others</strong>
+                                    Cap, sunscreen, camera, torch
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">Nearby Places</h3>
+                        <ul class="nearby-list">
+                            <li>
+                                <a href="anjaneri.html" class="nearby-place">
+                                    <img src="/api/placeholder/120/120" alt="Anjaneri Hill" class="nearby-img">
+                                    <div class="nearby-info">
+                                        <h4>Anjaneri Hill</h4>
+                                        <span class="nearby-distance">30-35 km away</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="trimbak.html" class="nearby-place">
+                                    <img src="/api/placeholder/120/120" alt="Trimbakeshwar Temple" class="nearby-img">
+                                    <div class="nearby-info">
+                                        <h4>Trimbakeshwar Temple</h4>
+                                        <span class="nearby-distance">25-30 km away</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="vineyards.html" class="nearby-place">
+                                    <img src="/api/placeholder/120/120" alt="Sula Vineyards" class="nearby-img">
+                                    <div class="nearby-info">
+                                        <h4>Sula Vineyards</h4>
+                                        <span class="nearby-distance">45-50 km away</span>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>About Nashik Tourism</h3>
+                    <p>Discover the divine city of Nashik, known for its religious significance, vineyards, and natural beauty. Our guide helps you explore this cultural gem in Maharashtra, India.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/thetraveller.jd/?utm_source=qr&r=nametag" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="Home.html">Home</a></li>
+                        <li><a href="Home.html#destinations">Tourist Spots</a></li>
+                        <li><a href="Home.html#transportation">Transport</a></li>
+                        <li><a href="Home.html#map">Map</a></li>
+                        <li><a href="Home.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Destinations</h3>
+                    <ul class="footer-links">
+                        <li><a href="harihar.html">Harihar Fort</a></li>
+                        <li><a href="anjaneri.html">Anjaneri Hill</a></li>
+                        <li><a href="sula.html">Sula Vineyards</a></li>
+                        <li><a href="pandavleni.html">Pandavleni Caves</a></li>
+                        <li><a href="all-destinations.html">View All</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Sandip University, Trimbak Road, Nashik, Maharashtra, India</p>
+                    <p><i class="fas fa-phone"></i> +91 253 2578954</p>
+                    <p><i class="fas fa-envelope"></i> info@discovernashik.com</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Safar Setu. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>// Mobile Navigation Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.getElementById('navToggle');
+            const navMenu = document.getElementById('navMenu');
+            
+            navToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                const icon = navToggle.querySelector('i');
+                if (navMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+            
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                if (window.scrollY > 50) {
+                    header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                    header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+                } else {
+                    header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                    header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+                }
+            });
+        });</script>
+
+</body>
+</html>

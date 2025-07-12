@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trimbakeshwar Temple - Safar Setu </title>
+   
+</head>
+
+<body>
+    <style>
+        /* Base Styles */
+:root {
+    --primary-blue: #1a73e8;
+    --secondary-blue: #4285f4;
+    --primary-green: #34a853;
+    --light-green: #5cbb5c;
+    --white: #ffffff;
+    --light-gray: #f8f9fa;
+    --dark-gray: #4a4a4a;
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--light-gray);
+    color: var(--dark-gray);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header & Navigation */
+header {
+    background-color: rgba(255, 255, 255, 0.95);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.logo h1 {
+    font-size: 24px;
+    color: var(--primary-blue);
+    font-weight: 600;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 30px;
+    position: relative;
+}
+
+nav ul li a {
+    font-weight: 500;
+    padding: 10px 0;
+    position: relative;
+    transition: var(--transition);
+}
+
+nav ul li a:hover {
+    color: var(--primary-blue);
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-blue);
+    bottom: 0;
+    left: 0;
+    transition: var(--transition);
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+.mobile-nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--dark-gray);
+}
+
+/* Hero Section */
+.destination-hero {
+    height: 60vh;
+    display: flex;
+    align-items: flex-end;
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1200/800') center/cover no-repeat;
+    color: var(--white);
+    text-align: left;
+    margin-top: 70px;
+    position: relative;
+    padding-bottom: 50px;
+}
+
+.hero-content {
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.destination-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.destination-hero p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+    max-width: 700px;
+}
+
+.category-badge {
+    display: inline-block;
+    background-color: var(--light-green);
+    color: var(--white);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    background-color: var(--white);
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.breadcrumb-list {
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+.breadcrumb-item {
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb-item:not(:last-child)::after {
+    content: '/';
+    margin: 0 10px;
+    color: #999;
+}
+
+.breadcrumb-link {
+    color: var(--primary-blue);
+    transition: var(--transition);
+}
+
+.breadcrumb-link:hover {
+    color: var(--secondary-blue);
+}
+
+.breadcrumb-current {
+    color: var(--dark-gray);
+    font-weight: 500;
+}
+
+/* Content Section */
+.destination-content {
+    padding: 60px 0;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+}
+
+.main-content h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: var(--dark-gray);
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.main-content h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 3px;
+    background-color: var(--primary-green);
+}
+
+.main-content p {
+    margin-bottom: 20px;
+}
+
+.gallery {
+    margin: 40px 0;
+}
+
+.gallery-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.gallery-item {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.gallery-item:hover {
+    transform: scale(1.03);
+}
+
+.gallery-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.sidebar {
+    background-color: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+    height: fit-content;
+}
+
+.sidebar-section {
+    padding: 25px;
+    border-bottom: 1px solid #eee;
+}
+
+.sidebar-section:last-child {
+    border-bottom: none;
+}
+
+.sidebar-title {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: var(--dark-gray);
+}
+
+.info-list {
+    list-style: none;
+}
+
+.info-list li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.info-icon {
+    color: var(--primary-blue);
+    margin-right: 15px;
+    font-size: 1.1rem;
+    margin-top: 3px;
+}
+
+.info-text strong {
+    display: block;
+    margin-bottom: 2px;
+}
+
+.map-preview {
+    width: 100%;
+    height: 200px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 15px;
+}
+
+.map-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.nearby-list {
+    list-style: none;
+}
+
+.nearby-list li {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.nearby-list li:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.nearby-place {
+    display: flex;
+    align-items: center;
+}
+
+.nearby-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.nearby-info h4 {
+    margin-bottom: 5px;
+    font-size: 1rem;
+}
+
+.nearby-distance {
+    font-size: 0.85rem;
+    color: #777;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: var(--white);
+    padding: 60px 0 20px;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-section h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 30px;
+    height: 2px;
+    background-color: var(--primary-green);
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: #ddd;
+    transition: var(--transition);
+}
+
+.footer-links a:hover {
+    color: var(--primary-green);
+    padding-left: 5px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: var(--white);
+    transition: var(--transition);
+}
+
+.social-icon:hover {
+    background-color: var(--primary-blue);
+    transform: translateY(-5px);
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    .destination-hero h1 {
+        font-size: 2rem;
+    }
+    
+    .destination-hero p {
+        font-size: 1rem;
+    }
+    
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .mobile-nav-toggle {
+        display: block;
+    }
+    
+    nav ul {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        flex-direction: column;
+        background-color: var(--white);
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        transition: var(--transition);
+        padding: 20px 0;
+    }
+    
+    nav ul.active {
+        left: 0;
+    }
+    
+    nav ul li {
+        margin: 0;
+        width: 100%;
+        text-align: center;
+    }
+    
+    nav ul li a {
+        display: block;
+        padding: 15px;
+    }
+}
+    </style>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="assets/images/safar setu logo.png" alt="Safar Setu Logo">
+                <h1>Safar Setu </h1>
+            </div>
+            <button class="mobile-nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="Home.html">Home</a></li>
+                    <li><a href="Home.html#destinations">Tourist Spots</a></li>
+                    <li><a href="Home.html#transportation">Transport</a></li>
+                    <li><a href="Home.html#map">Map</a></li>
+                    <li><a href="Home.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="destination-hero"style="background-image: url('images/nsk\ overview.jpg'); background-size: cover; background-position: center;">
+        <div class="container">
+            <div class="hero-content">
+                <span class="category-badge">Religious</span>
+                <h1>Trimbakeshwar Temple</h1>
+                <p>One of the twelve sacred Jyotirlingas in India, this ancient temple is dedicated to Lord Shiva and sits at the origin of the holy Godavari River.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb-list">
+                <li class="breadcrumb-item"><a href="Home.html" class="breadcrumb-link">Home</a></li>
+                <li class="breadcrumb-item"><a href="Home.html#destinations" class="breadcrumb-link">Destinations</a></li>
+                <li class="breadcrumb-item"><span class="breadcrumb-current">Trimbakeshwar Temple</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Content Section -->
+    <section class="destination-content">
+        <div class="container">
+            <div class="content-grid">
+                <div class="main-content">
+                    <h2>About Trimbakeshwar Temple</h2>
+                    <p>Trimbakeshwar Temple is one of the holiest Hindu temples in India and one of the 12 Jyotirlingas where Lord Shiva is worshipped. Located at the source of the Godavari River, this ancient temple dates back to the 18th century in its current form, but the site has been revered for millennia.</p>
+                    
+                    <p>The temple features black stone architecture with intricate carvings in the Nagara style. The unique aspect of this Jyotirlinga is that it has three faces embodying Lord Brahma, Lord Vishnu, and Lord Rudra (Shiva), representing the holy trinity of Hindu mythology.</p>
+                    
+                    <p>The Godavari River, also known as the Ganga of the South, originates near the temple at Brahmagiri Hills, making this location even more sacred. Pilgrims visit not only to worship the Jyotirlinga but also to pay homage to the holy river at its source.</p>
+                    
+                    <h2>Religious Significance</h2>
+                    <p>As one of the twelve Jyotirlingas, Trimbakeshwar holds immense religious significance for followers of Shiva. According to Hindu mythology, Lord Shiva granted a boon to Gautama Maharishi here, and the River Godavari originated at this place to purify and absolve his sins.</p>
+                    
+                    <p>The name "Trimbakeshwar" comes from the three lingas representing the trinity - Brahma, Vishnu, and Mahesh (Shiva). The temple is also associated with Ardhanareeshwara (half male and half female form of Shiva), symbolizing the unity of masculine and feminine energies.</p>
+                    
+                    <p>The temple is also known for its silver masks that adorn the Jyotirlinga and the crown of gold with diamonds that is used on special occasions.</p>
+                    
+                    <div class="gallery">
+                        <h3 class="gallery-title">Photo Gallery</h3>
+                        <div class="gallery-grid">
+                            <div class="gallery-item">
+                                <img src="assets/images/trimbakeshwar jyotirlinga front view.jpeg" alt="Trimbakeshwar Temple Front View" class="gallery-img">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="assets/images/Trimbakeshwar Temple Shivling.png" alt="Trimbakeshwar Temple Shivling" class="gallery-img">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="assets/images/Godavari Origin at Trimbakeshwar.png" alt="Godavari Origin at Trimbakeshwar" class="gallery-img">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="assets/images/Temple Architecture.png" alt="Temple Architecture" class="gallery-img">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="assets/images/kushawarta.jpeg" alt="Kushavarta Kund" class="gallery-img">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="assets/images/Brahmagiri Hills.png" alt="Brahmagiri Hills" class="gallery-img">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2>Plan Your Visit</h2>
+                    <p>The temple is approximately 28 km from Nashik city and is easily accessible by road. The best time to visit is during the early morning for darshan or during festivals like Mahashivratri when the temple is elaborately decorated.</p>
+                    
+                    <p>Visitors should be aware that the temple follows strict dress codes and traditional rules. Men are required to remove their upper garments before entering the inner sanctum, and women should dress modestly. Photography is not allowed inside the main temple.</p>
+                    
+                    <p>Accommodation options are available near the temple for pilgrims who wish to stay longer. Many devotees also take a trek to Brahmagiri, the source of the Godavari, which offers beautiful views of the surrounding hills.</p>
+                </div>
+                
+                <div class="sidebar">
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">Key Information</h3>
+                        <ul class="info-list">
+                            <li>
+                                <div class="info-icon"><i class="far fa-clock"></i></div>
+                                <div class="info-text">
+                                    <strong>Timing</strong>
+                                    5:30 AM - 9:00 PM
+                                </div>
+                            </li>
+                            <li>
+                                <div class="info-icon"><i class="fas fa-ticket-alt"></i></div>
+                                <div class="info-text">
+                                    <strong>Entry Fee</strong>
+                                    Free (Special darshan: ₹200)
+                                </div>
+                            </li>
+                            <li>
+                                <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                                <div class="info-text">
+                                    <strong>Location</strong>
+                                    Trimbak, Maharashtra 422212
+                                </div>
+                            </li>
+                            <li>
+                                <div class="info-icon"><i class="fas fa-car"></i></div>
+                                <div class="info-text">
+                                    <strong>Distance from Nashik</strong>
+                                    28 km (45 minutes drive)
+                                </div>
+                            </li>
+                            <li>
+                                <div class="info-icon"><i class="fas fa-calendar-alt"></i></div>
+                                <div class="info-text">
+                                    <strong>Best Time to Visit</strong>
+                                    October to March
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">Location</h3>
+                        <div class="map-preview" id="map">
+                          <!-- The map will be rendered here -->
+                        </div>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=Trimbakeshwar+Temple,Trimbak" target="_blank" style="display: block; text-align: center; margin-top: 15px; color: var(--primary-blue);">
+                          <i class="fas fa-directions"></i> Get Directions
+                        </a>
+                      </div>
+                      
+                      <script>
+                      function initMap() {
+                        // Coordinates for Trimbakeshwar Temple, Trimbak
+                        const trimbakeshwarLocation = { lat: 19.9322, lng: 73.5293 };
+                        
+                        // Create the map centered on Trimbakeshwar Temple
+                        const map = new google.maps.Map(document.getElementById("map"), {
+                          zoom: 15,
+                          center: trimbakeshwarLocation,
+                        });
+                        
+                        // Add a marker for Trimbakeshwar Temple
+                        const marker = new google.maps.Marker({
+                          position: trimbakeshwarLocation,
+                          map: map,
+                          title: "Trimbakeshwar Temple",
+                        });
+                      }
+                      </script>
+                      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2Qmkh2GJW1jtyKsaUMsrNDlp4qfCH4mY&callback=initMap" async defer></script>
+
+                    
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">Nearby Places</h3>
+                        <ul class="nearby-list">
+                            <li>
+                                <a href="sula-vineyards.html" class="nearby-place">
+                                    <img src="/api/placeholder/120/120" alt="Sula Vineyards" class="nearby-img">
+                                    <div class="nearby-info">
+                                        <h4>Sula Vineyards</h4>
+                                        <span class="nearby-distance">35 km away</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="panchvati.html" class="nearby-place">
+                                    <img src="/api/placeholder/120/120" alt="Panchavati" class="nearby-img">
+                                    <div class="nearby-info">
+                                        <h4>Panchavati</h4>
+                                        <span class="nearby-distance">30 km away</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="someshwar.html" class="nearby-place">
+                                    <img src="/api/placeholder/120/120" alt="Someshwar Waterfall" class="nearby-img">
+                                    <div class="nearby-info">
+                                        <h4>Someshwar Waterfall</h4>
+                                        <span class="nearby-distance">15 km away</span>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>About Nashik Tourism</h3>
+                    <p>Discover the divine city of Nashik, known for its religious significance, vineyards, and natural beauty. Our guide helps you explore this cultural gem in Maharashtra, India.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/thetraveller.jd/?utm_source=qr&r=nametag" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="Home.html">Home</a></li>
+                        <li><a href="Home.html#destinations">Tourist Spots</a></li>
+                        <li><a href="Home.html#transportation">Transport</a></li>
+                        <li><a href="Home.html#map">Map</a></li>
+                        <li><a href="Home.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Destinations</h3>
+                    <ul class="footer-links">
+                        <li><a href="panchvati.html">Panchavati</a></li>
+                        <li><a href="sula.html">Sula Vineyards</a></li>
+                        <li><a href="pandavleni.html">Pandavleni Caves</a></li>
+                        <li><a href="someshwar.html">Someshwar Waterfall</a></li>
+                        <li><a href="all-destinations.html">View All</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> sandip university, trimbak road, Nashik, Maharashtra, India</p>
+                    <p><i class="fas fa-phone"></i> +91 253 2578954</p>
+                    <p><i class="fas fa-envelope"></i> info@discovernashik.com</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Safar Setu . All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>// Mobile Navigation Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.getElementById('navToggle');
+            const navMenu = document.getElementById('navMenu');
+            
+            navToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                const icon = navToggle.querySelector('i');
+                if (navMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+            
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                if (window.scrollY > 50) {
+                    header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                    header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+                } else {
+                    header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                    header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+                }
+            });
+        });</script>
+
+</body>
+</html>
